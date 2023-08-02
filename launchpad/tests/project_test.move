@@ -2,7 +2,7 @@
 module launchpad::project_test {
     use std::vector;
 
-    use launchpad::project::{Self, AdminCap, Project};
+    use launchpad::project::{Self, AdminCap, ProjectBank};
     use sui::coin::{Self, Coin};
     use sui::math;
     use sui::test_scenario::{Self, Scenario, return_to_sender, return_shared, most_recent_id_shared};
@@ -77,7 +77,7 @@ module launchpad::project_test {
         test_scenario::next_tx(scenario, ADMIN);
         let clock = test_scenario::take_shared<Clock>(scenario);
         create_project_milestone_(scenario);
-        setup_launch_state_(scenario, 1, true, &clock);
+        setup_launch_state_(scenario, 2, true, &clock);
         test_scenario::return_shared(clock);
         test_scenario::end(scenario_val);
     }
@@ -91,7 +91,7 @@ module launchpad::project_test {
 
         let clock = test_scenario::take_shared<Clock>(scenario);
         create_project_(VESTING_TYPE_MILESTONE_UNLOCK_FIRST,scenario);
-        setup_launch_state_(scenario, 1, true, &clock);
+        setup_launch_state_(scenario, 2, true, &clock);
 
         add_milestone_(TGE + CLIFF_TIME + 1000, 1000, scenario, &clock);//alway pass
         add_milestone_(TGE + CLIFF_TIME + 2000, 4000, scenario, &clock);//must pass
@@ -113,7 +113,7 @@ module launchpad::project_test {
 
         let clock = test_scenario::take_shared<Clock>(scenario);
         create_project_milestone_(scenario);
-        setup_launch_state_(scenario, 1, true, &clock);
+        setup_launch_state_(scenario, 2, true, &clock);
 
         add_milestone_(1000, 750, scenario, &clock);//alway pass
         add_milestone_(2000, 250, scenario, &clock);//must pass
@@ -134,7 +134,7 @@ module launchpad::project_test {
         let clock = test_scenario::take_shared<Clock>(scenario);
 
         create_project_(VESTING_TYPE_LINEAR_UNLOCK_FIRST, scenario);
-        setup_launch_state_(scenario, 1, false, &clock);
+        setup_launch_state_(scenario, 2, false, &clock);
         deposit_to_project_(OWNER_PROJECT, DEPOSIT_VALUE, scenario);
         clock::increment_for_testing(&mut clock, 1000);
         start_fund_raising_(scenario, &clock);
@@ -153,7 +153,7 @@ module launchpad::project_test {
         let clock = test_scenario::take_shared<Clock>(scenario);
 
         create_project_(VESTING_TYPE_LINEAR_UNLOCK_FIRST, scenario);
-        setup_launch_state_(scenario, 1, false, &clock);
+        setup_launch_state_(scenario, 2, false, &clock);
         deposit_to_project_(OWNER_PROJECT, DEPOSIT_VALUE, scenario);
 
         clock::increment_for_testing(&mut clock, 1500);
@@ -173,7 +173,7 @@ module launchpad::project_test {
         let clock = test_scenario::take_shared<Clock>(scenario);
 
         create_project_(VESTING_TYPE_LINEAR_UNLOCK_FIRST, scenario);
-        setup_launch_state_(scenario, 1, false, &clock);
+        setup_launch_state_(scenario, 2, false, &clock);
         deposit_to_project_(OWNER_PROJECT, DEPOSIT_VALUE, scenario);
 
         clock::increment_for_testing(&mut clock, 1500);
@@ -196,7 +196,7 @@ module launchpad::project_test {
         let clock = test_scenario::take_shared<Clock>(scenario);
 
         create_project_milestone_(scenario);
-        setup_launch_state_(scenario, 1, false, &clock);
+        setup_launch_state_(scenario, 2, false, &clock);
         deposit_to_project_(OWNER_PROJECT, DEPOSIT_VALUE, scenario);
         start_fund_raising_(scenario, &clock);
 
@@ -231,7 +231,7 @@ module launchpad::project_test {
         let clock = test_scenario::take_shared<Clock>(scenario);
 
         create_project_milestone_(scenario);
-        setup_launch_state_(scenario, 1, false, &clock);
+        setup_launch_state_(scenario, 2, false, &clock);
         deposit_to_project_(OWNER_PROJECT, DEPOSIT_VALUE, scenario);
         start_fund_raising_(scenario, &clock);
 
@@ -255,7 +255,7 @@ module launchpad::project_test {
         let clock = test_scenario::take_shared<Clock>(scenario);
 
         create_project_(VESTING_TYPE_LINEAR_UNLOCK_FIRST, scenario);
-        setup_launch_state_(scenario, 1, false, &clock);
+        setup_launch_state_(scenario, 2, false, &clock);
         deposit_to_project_(OWNER_PROJECT, DEPOSIT_VALUE, scenario);
 
         clock::increment_for_testing(&mut clock, 1500);
@@ -281,7 +281,7 @@ module launchpad::project_test {
         let clock = test_scenario::take_shared<Clock>(scenario);
 
         create_project_(VESTING_TYPE_LINEAR_UNLOCK_FIRST, scenario);
-        setup_launch_state_(scenario, 1, true, &clock);
+        setup_launch_state_(scenario, 2, true, &clock);
         deposit_to_project_(OWNER_PROJECT, DEPOSIT_VALUE, scenario);
 
         clock::increment_for_testing(&mut clock, 1500);
@@ -304,7 +304,7 @@ module launchpad::project_test {
         let clock = test_scenario::take_shared<Clock>(scenario);
 
         create_project_(VESTING_TYPE_LINEAR_CLIFF_FIRST, scenario);
-        setup_launch_state_(scenario, 1, false, &clock);
+        setup_launch_state_(scenario, 2, false, &clock);
         deposit_to_project_(OWNER_PROJECT, DEPOSIT_VALUE, scenario);
 
         clock::increment_for_testing(&mut clock, START_TIME);
@@ -321,16 +321,19 @@ module launchpad::project_test {
         test_scenario::next_tx(scenario, USER2);
         {
             let spt = test_scenario::take_from_sender<Coin<SAKE>>(scenario);
-            let project = test_scenario::take_shared<Project<USDT, SAKE>>(scenario);
+            let projectBank = test_scenario::take_shared<ProjectBank>(scenario);
             let spt_value = coin::value(&spt);
-
-            let spt_value_expected = project::swap_token_for_test(AMOUNT, &project);
+            let project = project::get_project<USDT, SAKE>(
+                &mut projectBank,
+                test_scenario::ctx(scenario)
+            );
+            let spt_value_expected = project::swap_token_for_test(AMOUNT, project);
             let spt_value_actual = spt_value_expected / PERCENT_SCALE * (UNLOCK_PERCENT);
 
             assert!(spt_value_actual == spt_value, 0);
 
             test_scenario::return_to_sender(scenario, spt);
-            test_scenario::return_shared(project);
+            test_scenario::return_shared(projectBank);
         };
 
         clock::increment_for_testing(&mut clock,LINEAR_TIME / 2);
@@ -339,29 +342,33 @@ module launchpad::project_test {
         test_scenario::next_tx(scenario, USER2);
         {
             let spt = test_scenario::take_from_sender<Coin<SAKE>>(scenario);
-            let project = test_scenario::take_shared<Project<USDT, SAKE>>(scenario);
+            let projectBank = test_scenario::take_shared<ProjectBank>(scenario);
+            let project = project::get_project<USDT, SAKE>(
+                &mut projectBank,
+                test_scenario::ctx(scenario)
+            );
             let spt_value = coin::value(&spt);
 
-            let spt_value_expected = project::swap_token_for_test(AMOUNT, &project);
+            let spt_value_expected = project::swap_token_for_test(AMOUNT, project);
             let spt_value_actual = spt_value_expected / PERCENT_SCALE * (percent);
 
             assert!(spt_value_actual == spt_value, 0);
 
             test_scenario::return_to_sender(scenario, spt);
-            test_scenario::return_shared(project);
+            test_scenario::return_shared(projectBank);
         };
 
         test_scenario::next_tx(scenario, OWNER_PROJECT);
         {
-            let project = test_scenario::take_shared<Project<USDT, SAKE>>(scenario);
+            let projectBank = test_scenario::take_shared<ProjectBank>(scenario);
             let ctx = test_scenario::ctx(scenario);
             let version = versionForTest(ctx);
 
-            project::distribute_raised_fund(&mut project, &mut version, ctx);
+            project::distribute_raised_fund<USDT, SAKE>(&mut projectBank, &mut version, ctx);
 
             destroyForTest(version);
 
-            test_scenario::return_shared(project);
+            test_scenario::return_shared(projectBank);
 
             test_scenario::next_tx(scenario, OWNER_PROJECT);
             let coin_raised = test_scenario::take_from_sender<Coin<USDT>>(scenario);
@@ -384,7 +391,7 @@ module launchpad::project_test {
         let clock = test_scenario::take_shared<Clock>(scenario);
 
         create_project_(VESTING_TYPE_LINEAR_UNLOCK_FIRST, scenario);
-        setup_launch_state_(scenario, 1, false, &clock);
+        setup_launch_state_(scenario, 2, false, &clock);
         deposit_to_project_(OWNER_PROJECT, DEPOSIT_VALUE, scenario);
 
         clock::increment_for_testing(&mut clock, START_TIME);
@@ -401,16 +408,19 @@ module launchpad::project_test {
         test_scenario::next_tx(scenario, USER2);
         {
             let spt = test_scenario::take_from_sender<Coin<SAKE>>(scenario);
-            let project = test_scenario::take_shared<Project<USDT, SAKE>>(scenario);
+            let projectBank = test_scenario::take_shared<ProjectBank>(scenario);
             let spt_value = coin::value(&spt);
-
-            let spt_value_expected = project::swap_token_for_test(AMOUNT, &project);
+            let project = project::get_project<USDT, SAKE>(
+                &mut projectBank,
+                test_scenario::ctx(scenario)
+            );
+            let spt_value_expected = project::swap_token_for_test(AMOUNT, project);
             let spt_value_actual = spt_value_expected / PERCENT_SCALE * (UNLOCK_PERCENT);
 
             assert!(spt_value_actual == spt_value, 0);
 
             test_scenario::return_to_sender(scenario, spt);
-            test_scenario::return_shared(project);
+            test_scenario::return_shared(projectBank);
         };
 
         clock::increment_for_testing(&mut clock,CLIFF_TIME + LINEAR_TIME / 2);
@@ -419,29 +429,35 @@ module launchpad::project_test {
         test_scenario::next_tx(scenario, USER2);
         {
             let spt = test_scenario::take_from_sender<Coin<SAKE>>(scenario);
-            let project = test_scenario::take_shared<Project<USDT, SAKE>>(scenario);
+            let projectBank = test_scenario::take_shared<ProjectBank>(scenario);
             let spt_value = coin::value(&spt);
-
-            let spt_value_expected = project::swap_token_for_test(AMOUNT, &project);
+            let project = project::get_project<USDT, SAKE>(
+                &mut projectBank,
+                test_scenario::ctx(scenario)
+            );
+            let spt_value_expected = project::swap_token_for_test(AMOUNT, project);
             let spt_value_actual = spt_value_expected / PERCENT_SCALE * (percent);
 
             assert!(spt_value_actual == spt_value, 0);
 
             test_scenario::return_to_sender(scenario, spt);
-            test_scenario::return_shared(project);
+            test_scenario::return_shared(projectBank);
         };
 
         test_scenario::next_tx(scenario, OWNER_PROJECT);
         {
-            let project = test_scenario::take_shared<Project<USDT, SAKE>>(scenario);
+            let projectBank = test_scenario::take_shared<ProjectBank>(scenario);
             let ctx = test_scenario::ctx(scenario);
             let version = versionForTest(ctx);
-
-            project::distribute_raised_fund(&mut project, &mut version, ctx);
+            // let project = project::get_project<USDT, SAKE>(
+            //     &mut projectBank,
+            //     ctx
+            // );
+            project::distribute_raised_fund<USDT, SAKE>(&mut projectBank, &mut version, ctx);
 
             destroyForTest(version);
 
-            test_scenario::return_shared(project);
+            test_scenario::return_shared(projectBank);
 
             test_scenario::next_tx(scenario, OWNER_PROJECT);
             let coin_raised = test_scenario::take_from_sender<Coin<USDT>>(scenario);
@@ -464,7 +480,7 @@ module launchpad::project_test {
         let clock = test_scenario::take_shared<Clock>(scenario);
 
         create_project_(VESTING_TYPE_MILESTONE_UNLOCK_FIRST, scenario);
-        setup_launch_state_(scenario, 1, false, &clock);
+        setup_launch_state_(scenario, 2, false, &clock);
         deposit_to_project_(OWNER_PROJECT, DEPOSIT_VALUE, scenario);
 
         add_milestone_(TGE + CLIFF_TIME + 1000, (PERCENT_SCALE - UNLOCK_PERCENT) / 2, scenario, &clock);
@@ -483,16 +499,19 @@ module launchpad::project_test {
         test_scenario::next_tx(scenario, USER2);
         {
             let spt = test_scenario::take_from_sender<Coin<SAKE>>(scenario);
-            let project = test_scenario::take_shared<Project<USDT, SAKE>>(scenario);
             let spt_value = coin::value(&spt);
-
-            let spt_value_expected = project::swap_token_for_test(AMOUNT, &project);
+            let projectBank = test_scenario::take_shared<ProjectBank>(scenario);
+            let project = project::get_project<USDT, SAKE>(
+                &mut projectBank,
+                test_scenario::ctx(scenario)
+            );
+            let spt_value_expected = project::swap_token_for_test(AMOUNT, project);
             let spt_value_actual = spt_value_expected / PERCENT_SCALE * (UNLOCK_PERCENT);
 
             assert!(spt_value_actual == spt_value, 0);
 
             test_scenario::return_to_sender(scenario, spt);
-            test_scenario::return_shared(project);
+            test_scenario::return_shared(projectBank);
         };
 
         clock::increment_for_testing(&mut clock,  CLIFF_TIME + 1000);
@@ -502,16 +521,20 @@ module launchpad::project_test {
         test_scenario::next_tx(scenario, USER2);
         {
             let spt = test_scenario::take_from_sender<Coin<SAKE>>(scenario);
-            let project = test_scenario::take_shared<Project<USDT, SAKE>>(scenario);
+            let projectBank = test_scenario::take_shared<ProjectBank>(scenario);
+            let project = project::get_project<USDT, SAKE>(
+                &mut projectBank,
+                test_scenario::ctx(scenario)
+            );
             let spt_value = coin::value(&spt);
 
-            let spt_value_expected = project::swap_token_for_test(AMOUNT, &project);
+            let spt_value_expected = project::swap_token_for_test(AMOUNT, project);
             let spt_value_actual = spt_value_expected / PERCENT_SCALE * (percent);
 
             assert!(spt_value_actual == spt_value, 0);
 
             test_scenario::return_to_sender(scenario, spt);
-            test_scenario::return_shared(project);
+            test_scenario::return_shared(projectBank);
         };
 
         clock::increment_for_testing(&mut clock, 1000);
@@ -521,28 +544,36 @@ module launchpad::project_test {
         test_scenario::next_tx(scenario, USER2);
         {
             let spt = test_scenario::take_from_sender<Coin<SAKE>>(scenario);
-            let project = test_scenario::take_shared<Project<USDT, SAKE>>(scenario);
+            let projectBank = test_scenario::take_shared<ProjectBank>(scenario);
+            let project = project::get_project<USDT, SAKE>(
+                &mut projectBank,
+                test_scenario::ctx(scenario)
+            );
             let spt_value = coin::value(&spt);
 
-            let spt_value_expected = project::swap_token_for_test(AMOUNT, &project);
+            let spt_value_expected = project::swap_token_for_test(AMOUNT, project);
             let spt_value_actual = spt_value_expected / PERCENT_SCALE * (percent);
 
             assert!(spt_value_actual == spt_value, 0);
 
             test_scenario::return_to_sender(scenario, spt);
-            test_scenario::return_shared(project);
+            test_scenario::return_shared(projectBank);
         };
 
         test_scenario::next_tx(scenario, OWNER_PROJECT);
         {
-            let project = test_scenario::take_shared<Project<USDT, SAKE>>(scenario);
+            let projectBank = test_scenario::take_shared<ProjectBank>(scenario);
+            // let project = project::get_project<USDT, SAKE>(
+            //     &mut projectBank,
+            //     test_scenario::ctx(scenario)
+            // );
             let ctx = test_scenario::ctx(scenario);
             let version = versionForTest(ctx);
 
-            project::distribute_raised_fund(&mut project, &mut version, ctx);
+            project::distribute_raised_fund<USDT, SAKE>(&mut projectBank, &mut version, ctx);
             destroyForTest(version);
 
-            test_scenario::return_shared(project);
+            test_scenario::return_shared(projectBank);
 
             test_scenario::next_tx(scenario, OWNER_PROJECT);
             let coin_raised = test_scenario::take_from_sender<Coin<USDT>>(scenario);
@@ -565,7 +596,7 @@ module launchpad::project_test {
         let clock = test_scenario::take_shared<Clock>(scenario);
 
         create_project_(VESTING_TYPE_MILESTONE_UNLOCK_FIRST, scenario);
-        setup_launch_state_(scenario, 1, false, &clock);
+        setup_launch_state_(scenario, 2, false, &clock);
         deposit_to_project_(OWNER_PROJECT, DEPOSIT_VALUE, scenario);
 
         add_milestone_(TGE + CLIFF_TIME + 1000, (PERCENT_SCALE - UNLOCK_PERCENT) / 2, scenario, &clock);
@@ -584,16 +615,19 @@ module launchpad::project_test {
         test_scenario::next_tx(scenario, USER2);
         {
             let spt = test_scenario::take_from_sender<Coin<SAKE>>(scenario);
-            let project = test_scenario::take_shared<Project<USDT, SAKE>>(scenario);
+            let projectBank = test_scenario::take_shared<ProjectBank>(scenario);
             let spt_value = coin::value(&spt);
-
-            let spt_value_expected = project::swap_token_for_test(AMOUNT, &project);
+            let project = project::get_project<USDT, SAKE>(
+                &mut projectBank,
+                test_scenario::ctx(scenario)
+            );
+            let spt_value_expected = project::swap_token_for_test(AMOUNT, project);
             let spt_value_actual = spt_value_expected / PERCENT_SCALE * (UNLOCK_PERCENT);
 
             assert!(spt_value_actual == spt_value, 0);
 
             test_scenario::return_to_sender(scenario, spt);
-            test_scenario::return_shared(project);
+            test_scenario::return_shared(projectBank);
         };
 
         clock::increment_for_testing(&mut clock,1000);
@@ -603,16 +637,19 @@ module launchpad::project_test {
         test_scenario::next_tx(scenario, USER2);
         {
             let spt = test_scenario::take_from_sender<Coin<SAKE>>(scenario);
-            let project = test_scenario::take_shared<Project<USDT, SAKE>>(scenario);
+            let projectBank = test_scenario::take_shared<ProjectBank>(scenario);
             let spt_value = coin::value(&spt);
-
-            let spt_value_expected = project::swap_token_for_test(AMOUNT, &project);
+            let project = project::get_project<USDT, SAKE>(
+                &mut projectBank,
+                test_scenario::ctx(scenario)
+            );
+            let spt_value_expected = project::swap_token_for_test(AMOUNT, project);
             let spt_value_actual = spt_value_expected / PERCENT_SCALE * (percent);
 
             assert!(spt_value_actual == spt_value, 0);
 
             test_scenario::return_to_sender(scenario, spt);
-            test_scenario::return_shared(project);
+            test_scenario::return_shared(projectBank);
         };
 
         clock::increment_for_testing(&mut clock, 1000);
@@ -622,28 +659,36 @@ module launchpad::project_test {
         test_scenario::next_tx(scenario, USER2);
         {
             let spt = test_scenario::take_from_sender<Coin<SAKE>>(scenario);
-            let project = test_scenario::take_shared<Project<USDT, SAKE>>(scenario);
+            let projectBank = test_scenario::take_shared<ProjectBank>(scenario);
+            let project = project::get_project<USDT, SAKE>(
+                &mut projectBank,
+                test_scenario::ctx(scenario)
+            );
             let spt_value = coin::value(&spt);
 
-            let spt_value_expected = project::swap_token_for_test(AMOUNT, &project);
+            let spt_value_expected = project::swap_token_for_test(AMOUNT, project);
             let spt_value_actual = spt_value_expected / PERCENT_SCALE * (percent);
 
             assert!(spt_value_actual == spt_value, 0);
 
             test_scenario::return_to_sender(scenario, spt);
-            test_scenario::return_shared(project);
+            test_scenario::return_shared(projectBank);
         };
 
         test_scenario::next_tx(scenario, OWNER_PROJECT);
         {
-            let project = test_scenario::take_shared<Project<USDT, SAKE>>(scenario);
+            let projectBank = test_scenario::take_shared<ProjectBank>(scenario);
+            // let project = project::get_project<USDT, SAKE>(
+            //     &mut projectBank,
+            //     test_scenario::ctx(scenario)
+            // );
             let ctx = test_scenario::ctx(scenario);
             let version = versionForTest(ctx);
 
-            project::distribute_raised_fund(&mut project, &mut version, ctx);
+            project::distribute_raised_fund<USDT, SAKE>(&mut projectBank, &mut version, ctx);
             destroyForTest(version);
 
-            test_scenario::return_shared(project);
+            test_scenario::return_shared(projectBank);
 
             test_scenario::next_tx(scenario, OWNER_PROJECT);
             let coin_raised = test_scenario::take_from_sender<Coin<USDT>>(scenario);
@@ -666,7 +711,7 @@ module launchpad::project_test {
         let clock = test_scenario::take_shared<Clock>(scenario);
 
         create_project_(VESTING_TYPE_MILESTONE_UNLOCK_FIRST, scenario);
-        setup_launch_state_(scenario, 1, false, &clock);
+        setup_launch_state_(scenario, 2, false, &clock);
         deposit_to_project_(OWNER_PROJECT, DEPOSIT_VALUE, scenario);
 
         add_milestone_(TGE + CLIFF_TIME + 1000, (PERCENT_SCALE - UNLOCK_PERCENT) / 2, scenario, &clock);
@@ -685,16 +730,19 @@ module launchpad::project_test {
         test_scenario::next_tx(scenario, USER2);
         {
             let spt = test_scenario::take_from_sender<Coin<SAKE>>(scenario);
-            let project = test_scenario::take_shared<Project<USDT, SAKE>>(scenario);
+            let projectBank = test_scenario::take_shared<ProjectBank>(scenario);
             let spt_value = coin::value(&spt);
-
-            let spt_value_expected = project::swap_token_for_test(AMOUNT, &project);
+            let project = project::get_project<USDT, SAKE>(
+                &mut projectBank,
+                test_scenario::ctx(scenario)
+            );
+            let spt_value_expected = project::swap_token_for_test(AMOUNT, project);
             let spt_value_actual = spt_value_expected / PERCENT_SCALE * (UNLOCK_PERCENT);
 
             assert!(spt_value_actual == spt_value, 0);
 
             test_scenario::return_to_sender(scenario, spt);
-            test_scenario::return_shared(project);
+            test_scenario::return_shared(projectBank);
         };
 
         clock::increment_for_testing(&mut clock,1000);
@@ -704,16 +752,19 @@ module launchpad::project_test {
         test_scenario::next_tx(scenario, USER2);
         {
             let spt = test_scenario::take_from_sender<Coin<SAKE>>(scenario);
-            let project = test_scenario::take_shared<Project<USDT, SAKE>>(scenario);
+            let projectBank = test_scenario::take_shared<ProjectBank>(scenario);
             let spt_value = coin::value(&spt);
-
-            let spt_value_expected = project::swap_token_for_test(AMOUNT, &project);
+            let project = project::get_project<USDT, SAKE>(
+                &mut projectBank,
+                test_scenario::ctx(scenario)
+            );   
+            let spt_value_expected = project::swap_token_for_test(AMOUNT, project);
             let spt_value_actual = spt_value_expected / PERCENT_SCALE * (percent);
 
             assert!(spt_value_actual == spt_value, 0);
 
             test_scenario::return_to_sender(scenario, spt);
-            test_scenario::return_shared(project);
+            test_scenario::return_shared(projectBank);
         };
 
         clock::increment_for_testing(&mut clock, 1000);
@@ -723,28 +774,35 @@ module launchpad::project_test {
         test_scenario::next_tx(scenario, USER2);
         {
             let spt = test_scenario::take_from_sender<Coin<SAKE>>(scenario);
-            let project = test_scenario::take_shared<Project<USDT, SAKE>>(scenario);
             let spt_value = coin::value(&spt);
-
-            let spt_value_expected = project::swap_token_for_test(AMOUNT, &project);
+            let projectBank = test_scenario::take_shared<ProjectBank>(scenario);
+            let project = project::get_project<USDT, SAKE>(
+                &mut projectBank,
+                test_scenario::ctx(scenario)
+            );
+            let spt_value_expected = project::swap_token_for_test(AMOUNT, project);
             let spt_value_actual = spt_value_expected / PERCENT_SCALE * (percent);
 
             assert!(spt_value_actual == spt_value, 0);
 
             test_scenario::return_to_sender(scenario, spt);
-            test_scenario::return_shared(project);
+            test_scenario::return_shared(projectBank);
         };
 
         test_scenario::next_tx(scenario, OWNER_PROJECT);
         {
-            let project = test_scenario::take_shared<Project<USDT, SAKE>>(scenario);
+            let projectBank = test_scenario::take_shared<ProjectBank>(scenario);
+            // let project = project::get_project<USDT, SAKE>(
+            //     &mut projectBank,
+            //     test_scenario::ctx(scenario)
+            // ); 
             let ctx = test_scenario::ctx(scenario);
             let version = versionForTest(ctx);
 
-            project::distribute_raised_fund(&mut project, &mut version, ctx);
+            project::distribute_raised_fund<USDT, SAKE>(&mut projectBank, &mut version, ctx);
             destroyForTest(version);
 
-            test_scenario::return_shared(project);
+            test_scenario::return_shared(projectBank);
 
             test_scenario::next_tx(scenario, OWNER_PROJECT);
             let coin_raised = test_scenario::take_from_sender<Coin<USDT>>(scenario);
@@ -757,14 +815,18 @@ module launchpad::project_test {
         test_scenario::next_tx(scenario, OWNER_PROJECT);
         {
             //refund token to owner
-            let project = test_scenario::take_shared<Project<USDT, SAKE>>(scenario);
+            let projectBank = test_scenario::take_shared<ProjectBank>(scenario);
             let ctx = test_scenario::ctx(scenario);
             let version = versionForTest(ctx);
-            let token_sold = project::swap_token_for_test(AMOUNT * 2, &project);
-            project::refund_token_to_owner(&mut project, &mut version, ctx);
+            let project = project::get_project<USDT, SAKE>(
+                &mut projectBank,
+                ctx
+            );
+            let token_sold = project::swap_token_for_test(AMOUNT * 2, project);
+            project::refund_token_to_owner<USDT, SAKE>(&mut projectBank, &mut version, ctx);
             destroyForTest(version);
 
-            test_scenario::return_shared(project);
+            test_scenario::return_shared(projectBank);
 
             test_scenario::next_tx(scenario, OWNER_PROJECT);
             let stp_from_refund = test_scenario::take_from_sender<Coin<SAKE>>(scenario);
@@ -788,7 +850,7 @@ module launchpad::project_test {
 
         let clock = test_scenario::take_shared<Clock>(scenario);
         create_project_(VESTING_TYPE_LINEAR_UNLOCK_FIRST, scenario);
-        setup_launch_state_(scenario, 1, false, &clock);
+        setup_launch_state_(scenario, 2, false, &clock);
 
         let deposit_value = DEPOSIT_VALUE;
         deposit_to_project_(OWNER_PROJECT, deposit_value, scenario);
@@ -805,12 +867,11 @@ module launchpad::project_test {
         //refund coin to user
         test_scenario::next_tx(scenario, USER2);
         {
-            let project = test_scenario::take_shared<Project<USDT, SAKE>>(scenario);
+            let projectBank = test_scenario::take_shared<ProjectBank>(scenario);
             let ctx = test_scenario::ctx(scenario);
             let version = versionForTest(ctx);
 
-            project::claim_refund(&mut project, &mut version, ctx);
-
+            project::claim_refund<USDT, SAKE>(&mut projectBank, &mut version, ctx);
             destroyForTest(version);
 
             test_scenario::next_tx(scenario, USER2);
@@ -818,21 +879,21 @@ module launchpad::project_test {
             assert!(coin::value(&coin_bought) == coin_buy, 0);
 
 
-            test_scenario::return_shared(project);
+            test_scenario::return_shared(projectBank);
             test_scenario::return_to_address(USER2, coin_bought);
         };
 
         test_scenario::next_tx(scenario, OWNER_PROJECT);
         {
             //refund token to owner
-            let project = test_scenario::take_shared<Project<USDT, SAKE>>(scenario);
+            let projectBank = test_scenario::take_shared<ProjectBank>(scenario);
             let ctx = test_scenario::ctx(scenario);
             let version = versionForTest(ctx);
 
-            project::refund_token_to_owner(&mut project, &mut version, ctx);
+            project::refund_token_to_owner<USDT, SAKE>(&mut projectBank, &mut version, ctx);
             destroyForTest(version);
 
-            test_scenario::return_shared(project);
+            test_scenario::return_shared(projectBank);
 
             test_scenario::next_tx(scenario, OWNER_PROJECT);
             let stp_from_refund = test_scenario::take_from_sender<Coin<SAKE>>(scenario);
@@ -868,6 +929,7 @@ module launchpad::project_test {
 
 
             let clock = test_scenario::take_shared<Clock>(scenario);
+            let projectBank = test_scenario::take_shared<ProjectBank>(scenario);
 
             add_whitelist_kyc(&mut kyc, scenario);
 
@@ -876,6 +938,7 @@ module launchpad::project_test {
 
             project::create_project<USDT, SAKE>(
                 &admin_cap,
+                &mut projectBank,
                 OWNER_PROJECT,
                 vesting_type,
                 CLIFF_TIME,
@@ -884,7 +947,7 @@ module launchpad::project_test {
                 LINEAR_TIME,
                 COIN_DECIMAL,
                 TOKEN_DECIMAL,
-                true,
+                false,
                 &mut version,
                 &clock,
                 ctx
@@ -892,6 +955,7 @@ module launchpad::project_test {
             destroyForTest(version);
             return_shared(kyc);
             return_shared(clock);
+            return_shared(projectBank);
             test_scenario::return_to_sender(scenario, admin_cap);
         };
     }
@@ -900,14 +964,13 @@ module launchpad::project_test {
         test_scenario::next_tx(scenario, ADMIN);
         {
             let admin_cap = test_scenario::take_from_sender<AdminCap>(scenario);
-            let project = test_scenario::take_shared<Project<USDT, SAKE>>(scenario);
+            let projectBank = test_scenario::take_shared<ProjectBank>(scenario);
             let ctx = test_scenario::ctx(scenario);
-
             let version = versionForTest(ctx);
 
             project::setup_project<USDT, SAKE>(
                 &admin_cap,
-                &mut project,
+                &mut projectBank,
                 round,
                 usewhitelist,
                 SWAP_RATIO_COIN,
@@ -918,169 +981,208 @@ module launchpad::project_test {
                 SOFT_CAP,
                 HARD_CAP,
                 clock,
-                &mut version);
+                &mut version,
+                ctx);
 
             destroyForTest(version);
 
             test_scenario::return_to_sender(scenario, admin_cap);
-            test_scenario::return_shared(project);
+            // test_scenario::return_shared(projectBank);
+            test_scenario::return_shared(projectBank);
         };
     }
 
     fun add_milestone_(time: u64, percent: u64, scenario: &mut Scenario, clock: &Clock) {
         test_scenario::next_tx(scenario, ADMIN);
         let admin_cap = test_scenario::take_from_sender<AdminCap>(scenario);
-        let ido = test_scenario::take_shared<Project<USDT, SAKE>>(scenario);
+        // let ido = test_scenario::take_shared<Project<USDT, SAKE>>(scenario);
+        let projectBank = test_scenario::take_shared<ProjectBank>(scenario);
         let ctx = test_scenario::ctx(scenario);
-
         let version = versionForTest(ctx);
-        project::add_milestone(&admin_cap, &mut ido, time, percent, clock, &mut version);
+
+        project::add_milestone<USDT, SAKE>(&admin_cap, &mut projectBank, time, percent, clock, &mut version, ctx);
         destroyForTest(version);
         test_scenario::return_to_sender(scenario, admin_cap);
-        test_scenario::return_shared(ido);
+        // test_scenario::return_shared(ido);
+        test_scenario::return_shared(projectBank);
     }
 
     fun reset_milestone_(scenario: &mut Scenario) {
         test_scenario::next_tx(scenario, ADMIN);
         let admin_cap = test_scenario::take_from_sender<AdminCap>(scenario);
-        let ido = test_scenario::take_shared<Project<USDT, SAKE>>(scenario);
+        // let ido = test_scenario::take_shared<Project<USDT, SAKE>>(scenario);
+        let projectBank = test_scenario::take_shared<ProjectBank>(scenario);
         let ctx = test_scenario::ctx(scenario);
         let version = versionForTest(ctx);
-        project::reset_milestone(&admin_cap, &mut ido, &mut version);
+        // let ido = project::get_project<USDT, SAKE>(
+        //     &mut projectBank,
+        //     ctx
+        // );
+        project::reset_milestone<USDT, SAKE>(&admin_cap, &mut projectBank, &mut version, ctx);
         destroyForTest(version);
         test_scenario::return_to_sender(scenario, admin_cap);
-        test_scenario::return_shared(ido);
+        test_scenario::return_shared(projectBank);
+        // test_scenario::return_shared(ido);
     }
 
     fun start_fund_raising_(scenario: &mut Scenario, clock: &Clock) {
         test_scenario::next_tx(scenario, ADMIN);
         let admin_cap = test_scenario::take_from_sender<AdminCap>(scenario);
-        let ido = test_scenario::take_shared<Project<USDT, SAKE>>(scenario);
+        let projectBank = test_scenario::take_shared<ProjectBank>(scenario);
         let ctx = test_scenario::ctx(scenario);
-
         let version = versionForTest(ctx);
-        project::start_fund_raising(&admin_cap, &mut ido, clock, &mut version, ctx);
+        // let ido = project::get_project<USDT, SAKE>(
+        //     &mut projectBank,
+        //     ctx
+        // );
+        project::start_fund_raising<USDT, SAKE>(&admin_cap, &mut projectBank, clock, &mut version, ctx);
         destroyForTest(version);
 
         test_scenario::return_to_sender(scenario, admin_cap);
-        test_scenario::return_shared(ido);
+        test_scenario::return_shared(projectBank);
     }
 
     fun end_fund_raising_(scenario: &mut Scenario, clock: &Clock) {
         test_scenario::next_tx(scenario, ADMIN);
         let admin_cap = test_scenario::take_from_sender<AdminCap>(scenario);
-        let ido = test_scenario::take_shared<Project<USDT, SAKE>>(scenario);
+        let projectBank = test_scenario::take_shared<ProjectBank>(scenario);
         let ctx = test_scenario::ctx(scenario);
 
         let version = versionForTest(ctx);
-        project::end_fund_raising(&admin_cap, &mut ido, clock, &mut version, ctx);
+        // let ido = project::get_project<USDT, SAKE>(
+        //     &mut projectBank,
+        //     ctx
+        // );
+        project::end_fund_raising<USDT, SAKE>(&admin_cap, &mut projectBank, clock, &mut version, ctx);
         destroyForTest(version);
 
         test_scenario::return_to_sender(scenario, admin_cap);
-        test_scenario::return_shared(ido);
+        test_scenario::return_shared(projectBank);
     }
 
     fun deposit_to_project_(owner: address, value: u64, scenario: &mut Scenario) {
         test_scenario::next_tx(scenario, owner);
         {
             //deposit
-            let ido = test_scenario::take_shared<Project<USDT, SAKE>>(scenario);
+            let projectBank = test_scenario::take_shared<ProjectBank>(scenario);
             let ctx = test_scenario::ctx(scenario);
             let version = versionForTest(ctx);
             let spt1 = coin::mint_for_testing<SAKE>(value, ctx);
-
+            // let ido = project::get_project<USDT, SAKE>(
+            //     &mut projectBank,
+            //     ctx
+            // );
 
             let spts = vector::empty<Coin<SAKE>>();
             vector::push_back(&mut spts, spt1);
 
             //expect 5k
-            project::deposit_token(spts, value, &mut ido, &mut version, ctx);
+            project::deposit_token<USDT, SAKE>(spts, value, &mut projectBank, &mut version, ctx);
             destroyForTest(version);
 
-            test_scenario::return_shared(ido);
+            test_scenario::return_shared(projectBank);
         };
     }
 
     fun buy_token_(user: address, value: u64, scenario: &mut Scenario, clock: &Clock) {
         test_scenario::next_tx(scenario, user);
         {
-            let project = test_scenario::take_shared<Project<USDT, SAKE>>(scenario);
+            let projectBank = test_scenario::take_shared<ProjectBank>(scenario);
             let kyc = test_scenario::take_shared<Kyc>(scenario);
-
             let ctx = test_scenario::ctx(scenario);
             let version = versionForTest(ctx);
+            let _project = project::get_project<USDT, SAKE>(
+                &mut projectBank,
+                ctx
+            );
+
             let coin = coin::mint_for_testing<USDT>(TOKEN_MINT_TEST, ctx);
             let coins = vector::empty<Coin<USDT>>();
             vector::push_back(&mut coins, coin);
 
-            project::buy(coins, value, &mut project, clock, &kyc, &mut version, ctx);
+            project::buy<USDT, SAKE>(coins, value, &mut projectBank, clock, &kyc, &mut version, ctx);
             destroyForTest(version);
 
             return_shared(kyc);
-            test_scenario::return_shared(project);
+            test_scenario::return_shared(projectBank);
         };
     }
 
     fun add_whitelist_(user: address, scenario: &mut Scenario) {
         test_scenario::next_tx(scenario, ADMIN);
         {
-            let project = test_scenario::take_shared<Project<USDT, SAKE>>(scenario);
+            let projectBank = test_scenario::take_shared<ProjectBank>(scenario);
             let admin_cap = test_scenario::take_from_sender<AdminCap>(scenario);
 
             let ctx = test_scenario::ctx(scenario);
             let version = versionForTest(ctx);
+            // let project = project::get_project<USDT, SAKE>(
+            //     &mut projectBank,
+            //     ctx
+            // );
             let users = vector::empty<address>();
             vector::push_back(&mut users, user);
-            project::add_whitelist(&admin_cap, &mut project, users, &mut version, ctx);
+            project::add_whitelist<USDT, SAKE>(&admin_cap, &mut projectBank, users, &mut version, ctx);
             destroyForTest(version);
-            test_scenario::return_shared(project);
+            test_scenario::return_shared(projectBank);
             test_scenario::return_to_sender(scenario, admin_cap);
         }
     }
 
     fun receive_token_(user: address, scenario: &mut Scenario, clock: &Clock) {
         test_scenario::next_tx(scenario, user);
-        let ido = test_scenario::take_shared<Project<USDT, SAKE>>(scenario);
+        let projectBank = test_scenario::take_shared<ProjectBank>(scenario);
         let ctx = test_scenario::ctx(scenario);
         let version = versionForTest(ctx);
-        project::claim_token(&mut ido, clock, &mut version, ctx);
+        let _ido = project::get_project<USDT, SAKE>(
+                &mut projectBank,
+                ctx
+            );
+        project::claim_token<USDT, SAKE>(&mut projectBank, clock, &mut version, ctx);
         destroyForTest(version);
-        test_scenario::return_shared(ido);
+        test_scenario::return_shared(projectBank);
     }
 
     fun add_max_allocate_(user: address, max_allocate: u64, scenario: &mut Scenario) {
         test_scenario::next_tx(scenario, ADMIN);
-        let project = test_scenario::take_shared<Project<USDT, SAKE>>(scenario);
+        let projectBank = test_scenario::take_shared<ProjectBank>(scenario);
         let admin_cap = test_scenario::take_from_sender<AdminCap>(scenario);
 
         let ctx = test_scenario::ctx(scenario);
         let version = versionForTest(ctx);
-
+        // let project = project::get_project<USDT, SAKE>(
+        //     &mut projectBank,
+        //     ctx
+        // );
         let users = vector::empty<address>();
         let max_allocates = vector::empty<u64>();
         vector::push_back(&mut users, user);
         vector::push_back(&mut max_allocates, max_allocate);
 
-        project::add_max_allocations(&admin_cap, users, max_allocates, &mut project, &mut version, ctx);
+        project::add_max_allocations<USDT, SAKE>(&admin_cap, users, max_allocates, &mut projectBank, &mut version, ctx);
 
         destroyForTest(version);
-        test_scenario::return_shared(project);
+        test_scenario::return_shared(projectBank);
         test_scenario::return_to_sender(scenario, admin_cap);
     }
 
     fun remove_max_allocate_(user: address, scenario: &mut Scenario) {
         test_scenario::next_tx(scenario, ADMIN);
-        let project = test_scenario::take_shared<Project<USDT, SAKE>>(scenario);
+        let projectBank = test_scenario::take_shared<ProjectBank>(scenario);
         let admin_cap = test_scenario::take_from_sender<AdminCap>(scenario);
 
         let ctx = test_scenario::ctx(scenario);
         let version = versionForTest(ctx);
+        // let project = project::get_project<USDT, SAKE>(
+        //     &mut projectBank,
+        //     ctx
+        // );
         let users = vector::empty<address>();
         vector::push_back(&mut users, user);
-        project::clear_max_allocate(&admin_cap, users, &mut project, &mut version, ctx);
+        project::clear_max_allocate<USDT, SAKE>(&admin_cap, users, &mut projectBank, &mut version, ctx);
         destroyForTest(version);
 
-        test_scenario::return_shared(project);
+        test_scenario::return_shared(projectBank);
         test_scenario::return_to_sender(scenario, admin_cap);
     }
 

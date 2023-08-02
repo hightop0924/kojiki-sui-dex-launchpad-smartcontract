@@ -18,8 +18,8 @@ module defi::master_chef {
   use library::utils::{get_coin_info_string};
   use library::math::{fdiv_u256, fmul_u256};
 
-  const START_TIMESTAMP: u64 = 2288541374;
-  const SAKE_PER_MS: u64 = 10; // 40M SAKE per year
+  const START_TIMESTAMP: u64 = 10; // HHW : 2288541374;
+  const SAKE_PER_MS: u64 = 10; // HHW : 40M SAKE per year
   const SAKE_POOL_KEY: u64 = 0;
 
   const ERROR_POOL_ADDED_ALREADY: u64 = 1;

@@ -7,7 +7,7 @@ Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-fram
 
 [addresses]
 sui = "0x02"
-launchpad = "0x00"
+launchpad = "0x0"
 
 ##Test addresses
 seedFund = "0x8880"

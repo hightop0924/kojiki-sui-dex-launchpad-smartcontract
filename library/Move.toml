@@ -1,11 +1,11 @@
 [package]
 name = "Library"
 version = "0.0.1"
-published-at = "0x99e3106048e51dfc0b4be926eaa80642be2e24945e432429cc3a03296b77b4af"
+published-at = "0x56919086819449311d3c57bd71f35e0fd033fa681eafaba9731afd79853a354e"
 
 [dependencies]
 Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "framework/mainnet" }
 
 [addresses]
-library =  "0x99e3106048e51dfc0b4be926eaa80642be2e24945e432429cc3a03296b77b4af"
+library =  "0x56919086819449311d3c57bd71f35e0fd033fa681eafaba9731afd79853a354e"
 sui =  "0x2"

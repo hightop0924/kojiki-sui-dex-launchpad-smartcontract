@@ -1,9 +1,12 @@
 Kojiki Dex Smart contracts
 
-1. Dex 
+Deploy sequence as below.
+
+1. library
+2. tokens (Test Tokens)
+3. SAKE Token (for dex utility)
+4. Dex 
   -supports
     * AMM
     * Staking (master-chef)
-2. Launchpad 
-3. SAKE Token (for dex utility)
-4. Test Tokens
+5. Launchpad 

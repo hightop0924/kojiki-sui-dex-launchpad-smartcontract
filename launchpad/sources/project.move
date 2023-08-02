@@ -7,9 +7,12 @@
 /// - many round
 module launchpad::project {
     use std::vector;
+    use std::type_name;
+    use std::ascii::{Self, String};
     use launchpad::payment;
     use sui::coin::{Self, Coin};
     use sui::dynamic_field;
+    use sui::dynamic_object_field as ofield;
     use sui::event;
     use sui::math;
     use sui::object::{Self, UID, id_address};
@@ -61,6 +64,8 @@ module launchpad::project {
     const EInvalidWhitelist: u64 = 1029;
     const EInvalidAmount: u64 = 1030;
     const ENotEnoughCoinFund: u64 = 1031;
+    const ERROR_NO_EXIST_PROJECT: u64 = 1032;
+
 
     const ROUND_SEED: u8 = 1;
     const ROUND_PRIVATE: u8 = 2;
@@ -153,19 +158,76 @@ module launchpad::project {
         community: Community,
         use_whitelist: bool,
         owner: address,
+        coin_name: String,
+        coin_addr: String,
         coin_decimals: u8,
+        token_name: String,
+        token_addr: String,
         token_decimals: u8,
         vesting: Vesting,
         whitelist: Table<address, address>,
         require_kyc: bool
     }
 
+    struct ProjectData has store, copy, drop {
+        tokenIconUrl: String,
+        tokenName: String,
+        tokenAddress: String,
+        coinName: String,
+        coinAddress: String,
+        isHardcapReached: bool,
+        isWLStage: bool,
+        status: u64,
+        raisedAmount: u64,
+        allocation: u64
+    }
+
+    struct ProjectBank has key {
+        id: UID,
+        projects: vector<ProjectData>
+    }
+
     struct AdminCap has key, store {
         id: UID
     }
 
+    // fun get_project_name<COIN, TOKEN>(): String {
+    //     // type_name::
+    // }
+
+    fun get_type_name<T>() : String {
+        type_name::into_string(type_name::get<T>())
+    }
+
+    fun get_name<T>() : String {
+        let type = ascii::as_bytes(&type_name::into_string(type_name::get<T>()));
+        let len = vector::length(type);
+        let idx = len - 1;
+        while (idx > 0) {
+            let ch = vector::borrow<u8>(type, idx);
+            idx = idx - 1;
+            if (*ch == 58/*':'*/) break;
+        };
+
+        let newvec = vector::empty();
+        idx = idx + 1;
+        if (idx > 0) idx = idx + 1;
+        while (idx < len) {
+            vector::push_back(&mut newvec, *vector::borrow<u8>(type, idx));
+            idx = idx + 1;
+        };
+
+        ascii::string(newvec)
+    }
+
     ///init with admin cap
     fun init(_witness: PROJECT, ctx: &mut TxContext) {
+        let projectbank = ProjectBank {
+            id: object::new(ctx),
+            projects: vector::empty()
+        };
+        transfer::share_object(projectbank);
+
         let adminCap = AdminCap { id: object::new(ctx) };
         transfer::public_transfer(adminCap, sender(ctx));
     }
@@ -180,6 +242,7 @@ module launchpad::project {
 
     /// add one project
     public fun create_project<COIN, TOKEN>(_adminCap: &AdminCap,
+                                           projectBank: &mut ProjectBank,
                                            owner: address,
                                            vesting_type: u8,
                                            cliff_time: u64,
@@ -248,7 +311,11 @@ module launchpad::project {
             launch_state: state,
             community,
             use_whitelist: false,
+            coin_name: get_name<COIN>(),
+            coin_addr: get_type_name<COIN>(),
             coin_decimals,
+            token_name: get_name<TOKEN>(),
+            token_addr: get_type_name<TOKEN>(),
             token_decimals,
             vesting,
             whitelist: table::new(ctx),
@@ -256,17 +323,101 @@ module launchpad::project {
         };
 
         event::emit(build_event_create_project(&project));
-        transfer::share_object(project);
+        let index = vector::length(&mut projectBank.projects);
+        vector::push_back(&mut projectBank.projects, ProjectData {
+            tokenIconUrl: ascii::string(b"https://s2.coinmarketcap.com/static/img/coins/64x64/25051.png"),
+            tokenName: get_name<TOKEN>(),
+            tokenAddress: get_type_name<TOKEN>(),
+            coinName: get_name<COIN>(),
+            coinAddress: get_type_name<COIN>(),
+            isHardcapReached: false,
+            isWLStage: false,
+            status: 0,
+            raisedAmount: 0,
+            allocation: 0
+        });
+        ofield::add<u64, Project<COIN, TOKEN>>(&mut projectBank.id, index, project);
+        // transfer::share_object(project);
+    }
+
+    public fun get_all_projectData<COIN, TOKEN>(
+        projectBank: &mut ProjectBank,
+        project:&mut Project<COIN, TOKEN>,
+        _ctx: &mut TxContext
+    ) : vector<ProjectData> {
+        let resultDatas = vector::empty<ProjectData>();
+        // get project in projectkeys
+        let len = vector::length<ProjectData>(&projectBank.projects);
+        let idx : u64 = 0;
+        while (idx < len) {
+            let projectData = vector::borrow<ProjectData>(&projectBank.projects, idx);
+            let resultData = *projectData;
+
+            resultData.raisedAmount = coin::value(&project.launch_state.coin_raised);
+            vector::push_back(&mut resultDatas, resultData);
+
+            idx = idx + 1;
+        };
+        resultDatas
+    }
+
+    public fun get_project<COIN, TOKEN>(
+        projectBank: &mut ProjectBank,
+        _ctx: &TxContext
+    ) : &mut Project<COIN, TOKEN> {
+        // get project index in ProjectBank.projects
+        let length = vector::length(&projectBank.projects);
+        let index = 0;
+        while (index < length) {
+            let data = vector::borrow<ProjectData>(&projectBank.projects, index);
+            if (data.tokenAddress == get_type_name<TOKEN>() &&
+                data.coinAddress == get_type_name<COIN>()) 
+                break;
+            index = index + 1;
+        };
+
+        assert!(index < length, ERROR_NO_EXIST_PROJECT);
+
+        let project = ofield::borrow_mut<u64, Project<COIN, TOKEN>>(&mut projectBank.id, index);
+        project
+    }
+
+    public fun get_projectData<COIN, TOKEN>(
+        projectBank: &mut ProjectBank,
+        _ctx: &mut TxContext
+    ) : ProjectData
+    {
+        // get project index in ProjectBank.projects
+        let length = vector::length(&projectBank.projects);
+        let index = 0;
+        while (index < length) {
+            let data = vector::borrow<ProjectData>(&projectBank.projects, index);
+            if (data.tokenAddress == get_type_name<TOKEN>() &&
+                data.coinAddress == get_type_name<COIN>()) 
+                break;
+            index = index + 1;
+        };
+
+        assert!(index < length, ERROR_NO_EXIST_PROJECT);
+
+        // return project in dynamic_objects
+        let projectData = (vector::borrow<ProjectData>(&mut projectBank.projects, index));
+        let project = ofield::borrow_mut<u64, Project<COIN, TOKEN>>(&mut projectBank.id, index);
+        let resultData = *projectData;
+
+        resultData.raisedAmount = coin::value(&project.launch_state.coin_raised);
+        resultData
     }
 
     public fun change_owner<COIN, TOKEN>(
         new_owner: address,
-        project: &mut Project<COIN, TOKEN>,
+        projectBank: &mut ProjectBank,
         version: &mut Version,
         ctx: &mut TxContext
     ) {
         checkVersion(version, VERSION);
         let sender = sender(ctx);
+        let project = get_project<COIN, TOKEN>(projectBank, ctx);
         assert!(sender == project.owner, EInvalidPermission);
         let current_owner = project.owner;
         project.owner = new_owner;
@@ -274,14 +425,15 @@ module launchpad::project {
     }
 
     public fun add_milestone<COIN, TOKEN>(_adminCap: &AdminCap,
-                                          project: &mut Project<COIN, TOKEN>,
+                                          projectBank: &mut ProjectBank,
                                           time: u64,
                                           percent: u64,
                                           sclock: &Clock,
                                           version: &mut Version,
+                                          _ctx: &mut TxContext
     ) {
         checkVersion(version, VERSION);
-
+        let project = get_project<COIN, TOKEN>(projectBank, _ctx);
         let vesting = &mut project.vesting;
         assert!(vesting.type == VESTING_TYPE_MILESTONE_UNLOCK_FIRST
             || vesting.type == VESTING_TYPE_MILESTONE_CLIFF_FIRST, EInvalidVestingType);
@@ -299,16 +451,32 @@ module launchpad::project {
     }
 
     public fun reset_milestone<COIN, TOKEN>(_adminCap: &AdminCap,
-                                            project: &mut Project<COIN, TOKEN>,
-                                            version: &mut Version) {
+                                            projectBank: &mut ProjectBank,
+                                            version: &mut Version,
+                                            ctx: &mut TxContext) {
         checkVersion(version, VERSION);
-
+        let project = get_project<COIN, TOKEN>(projectBank, ctx);
         let vesting = &mut project.vesting;
         vesting.milestones = vector::empty<VestingMileStone>();
     }
 
+    public fun set_project_public<COIN, TOKEN>(
+        _adminCap: &AdminCap,
+        projectBank: &mut ProjectBank,
+        round: u8,
+        _clock: &Clock,
+        _version: &mut Version,
+        _ctx: &mut TxContext
+    ) {
+        let project = get_project<COIN, TOKEN>(projectBank, _ctx);
+        let state = &mut project.launch_state;
+        assert!(round == ROUND_PUBLIC, EInvalidRound);
+        assert!(state.round == ROUND_PRIVATE, EInvalidRound);
+        state.round = round;
+    }
+
     public fun setup_project<COIN, TOKEN>(_adminCap: &AdminCap,
-                                          project: &mut Project<COIN, TOKEN>,
+                                          projectBank: &mut ProjectBank,
                                           round: u8,
                                           usewhitelist: bool,
                                           swap_ratio_coin: u64,
@@ -319,15 +487,17 @@ module launchpad::project {
                                           soft_cap: u64,
                                           hard_cap: u64,
                                           clock: &Clock,
-                                          version: &mut Version
+                                          version: &mut Version,
+                                          _ctx: &mut TxContext
     ) {
         checkVersion(version, VERSION);
 
         assert!(start_time > clock::timestamp_ms(clock) && end_time > start_time, EInvalidTime);
         assert!(hard_cap > soft_cap && soft_cap > 0, EInvalidCap);
         assert!(swap_ratio_coin > 0 && swap_ratio_token > 0, EInvalidSwapRatio);
-        assert!(round >= ROUND_SEED && round <= ROUND_PRIVATE, EInvalidRound);
+        assert!(round == ROUND_PRIVATE, EInvalidRound);
 
+        let project = get_project<COIN, TOKEN>(projectBank, _ctx);
         let state = &mut project.launch_state;
         assert!(state.state == ROUND_STATE_INIT, EInvalidRoundState);
 
@@ -359,11 +529,12 @@ module launchpad::project {
     public fun add_max_allocations<COIN, TOKEN>(_adminCap: &AdminCap,
                                              users: vector<address>,
                                              max_allocates: vector<u64>,
-                                             project: &mut Project<COIN, TOKEN>,
+                                             projectBank: &mut ProjectBank,
                                              version: &mut Version,
                                              _ctx: &mut TxContext) {
         checkVersion(version, VERSION);
         assert!(vector::length(&users) == vector::length(&max_allocates), 0);
+        let project = get_project<COIN, TOKEN>(projectBank, _ctx);
         let launch_state = &mut project.launch_state;
         let max_allocations = &mut launch_state.max_allocations;
 
@@ -390,10 +561,11 @@ module launchpad::project {
 
     public fun clear_max_allocate<COIN, TOKEN>(_adminCap: &AdminCap,
                                                users: vector<address>,
-                                               project: &mut Project<COIN, TOKEN>,
+                                               projectBank: &mut ProjectBank,
                                                version: &mut Version,
                                                _ctx: &mut TxContext) {
         checkVersion(version, VERSION);
+        let project = get_project<COIN, TOKEN>(projectBank, _ctx);
         let max_allocation = &mut project.launch_state.max_allocations;
 
         let (i, n) = (0, vector::length(&users));
@@ -411,11 +583,12 @@ module launchpad::project {
     }
 
     public fun add_whitelist<COIN, TOKEN>(_adminCap: &AdminCap,
-                                          project: &mut Project<COIN, TOKEN>,
+                                          projectBank: &mut ProjectBank,
                                           user_list: vector<address>,
                                           version: &mut Version,
                                           _ctx: &mut TxContext) {
         checkVersion(version, VERSION);
+        let project = get_project<COIN, TOKEN>(projectBank, _ctx);
         assert!(project.use_whitelist, EProjectNotWhitelist);
         assert!(vector::length(&user_list) > 0, EInvalidWhitelist);
 
@@ -436,12 +609,12 @@ module launchpad::project {
     }
 
     public fun remove_whitelist<COIN, TOKEN>(_adminCap: &AdminCap,
-                                             project: &mut Project<COIN, TOKEN>,
+                                             projectBank: &mut ProjectBank,
                                              user_list: vector<address>,
                                              version: &mut Version,
                                              _ctx: &mut TxContext) {
         checkVersion(version, VERSION);
-
+        let project = get_project<COIN, TOKEN>(projectBank, _ctx);
         assert!(project.use_whitelist, EProjectNotWhitelist);
         assert!(vector::length(&user_list) > 0, EInvalidWhitelist);
 
@@ -462,13 +635,13 @@ module launchpad::project {
 
     public fun start_fund_raising<COIN, TOKEN>(
         _adminCap: &AdminCap,
-        project: &mut Project<COIN, TOKEN>,
+        projectBank: &mut ProjectBank,
         _clock: &Clock,
         version: &mut Version,
         ctx: &mut TxContext
     ) {
         checkVersion(version, VERSION);
-
+        let project = get_project<COIN, TOKEN>(projectBank, ctx);
         validate_start_fund_raising(project);
 
         project.launch_state.total_token_sold = 0;
@@ -484,7 +657,7 @@ module launchpad::project {
     public fun buy<COIN, TOKEN>(
         coins: vector<Coin<COIN>>,
         amount: u64,
-        project: &mut Project<COIN, TOKEN>,
+        projectBank: &mut ProjectBank,
         sclock: &Clock,
         kyc: &Kyc,
         version: &mut Version,
@@ -493,6 +666,8 @@ module launchpad::project {
         checkVersion(version, VERSION);
 
         assert!(amount > 0, EInvalidAmount);
+
+        let project = get_project<COIN, TOKEN>(projectBank, ctx);
 
         let buyer_address = tx_context::sender(ctx);
         let now_ms = clock::timestamp_ms(sclock);
@@ -560,12 +735,13 @@ module launchpad::project {
 
     public fun end_fund_raising<COIN, TOKEN>(
         _adminCap: &AdminCap,
-        project: &mut Project<COIN, TOKEN>,
+        projectBank: &mut ProjectBank,
         sclock: &Clock,
         version: &mut Version,
         _ctx: &mut TxContext
     ) {
         checkVersion(version, VERSION);
+        let project = get_project<COIN, TOKEN>(projectBank, _ctx);
         validate_end_fundraising(project, clock::timestamp_ms(sclock));
         let projectAddr = id_address(project);
 
@@ -587,11 +763,12 @@ module launchpad::project {
     }
 
     public fun distribute_raised_fund<COIN, TOKEN>(
-        project: &mut Project<COIN, TOKEN>,
+        projectBank: &mut ProjectBank,
         version: &mut Version,
         ctx: &mut TxContext
     ) {
         checkVersion(version, VERSION);
+        let project = get_project<COIN, TOKEN>(projectBank, ctx);
         validate_distribute_fund(project, ctx);
         let launch_state = &mut project.launch_state;
         let coin_raised_val = coin::value<COIN>(&launch_state.coin_raised);
@@ -607,11 +784,12 @@ module launchpad::project {
     }
 
     public fun refund_token_to_owner<COIN, TOKEN>(
-        project: &mut Project<COIN, TOKEN>,
+        projectBank: &mut ProjectBank,
         version: &mut Version,
         ctx: &mut TxContext
     ) {
         checkVersion(version, VERSION);
+        let project = get_project<COIN, TOKEN>(projectBank, ctx);
         validate_refund_to_owner(project, ctx);
         let launch_state = &mut project.launch_state;
         let redundant = launch_state.total_token_deposited - launch_state.total_token_sold;
@@ -629,12 +807,13 @@ module launchpad::project {
 
 
     public fun withdraw_token<COIN, TOKEN>(_adminCap: &AdminCap,
-                                           project: &mut Project<COIN, TOKEN>,
+                                           projectBank: &mut ProjectBank,
                                            version: &mut Version,
                                            to: address,
                                            amount: u64,
                                            ctx: &mut TxContext) {
         checkVersion(version, VERSION);
+        let project = get_project<COIN, TOKEN>(projectBank, ctx);
         let token_fund = &mut project.launch_state.token_fund;
         assert!(amount > 0 && coin::value(token_fund) > amount, ENotEnoughTokenFund);
         assert!(to == project.owner, ENotOwner);
@@ -643,10 +822,11 @@ module launchpad::project {
 
     public fun deposit_token<COIN, TOKEN>(tokens: vector<Coin<TOKEN>>,
                                           value: u64,
-                                          project: &mut Project<COIN, TOKEN>,
+                                          projectBank: &mut ProjectBank,
                                           version: &mut Version,
                                           ctx: &mut TxContext) {
         checkVersion(version, VERSION);
+        let project = get_project<COIN, TOKEN>(projectBank, ctx);
         coin::join(&mut project.launch_state.token_fund, payment::take_from(tokens, value, ctx));
         project.launch_state.total_token_deposited = project.launch_state.total_token_deposited + value;
         event::emit(ProjectDepositFundEvent {
@@ -656,11 +836,13 @@ module launchpad::project {
         })
     }
 
-    public fun claim_token<COIN, TOKEN>(project: &mut Project<COIN, TOKEN>,
+    public fun claim_token<COIN, TOKEN>(projectBank: &mut ProjectBank,
                                         clock: &Clock,
                                         version: &mut Version,
                                         ctx: &mut TxContext) {
         checkVersion(version, VERSION);
+
+        let project = get_project<COIN, TOKEN>(projectBank, ctx);
 
         validate_claim(project);
         let senderAddr = sender(ctx);
@@ -693,11 +875,11 @@ module launchpad::project {
         })
     }
 
-    public fun claim_refund<COIN, TOKEN>(project: &mut Project<COIN, TOKEN>,
+    public fun claim_refund<COIN, TOKEN>(projectBank: &mut ProjectBank,
                                          version: &mut Version,
                                          ctx: &mut TxContext) {
         checkVersion(version, VERSION);
-
+        let project = get_project<COIN, TOKEN>(projectBank, ctx);
         validate_refund(project);
         let sender = sender(ctx);
         let state = &mut project.launch_state;
@@ -712,11 +894,11 @@ module launchpad::project {
         event::emit(ClaimRefundEvent { project: object::id_address(project), user: sender, coin_fund: refund_amt })
     }
 
-    public fun vote<COIN, TOKEN>(project: &mut Project<COIN, TOKEN>,
+    public fun vote<COIN, TOKEN>(projectBank: &mut ProjectBank,
                                  version: &mut Version,
                                  ctx: &mut TxContext) {
         checkVersion(version, VERSION);
-
+        let project = get_project<COIN, TOKEN>(projectBank, ctx);
         let com = &mut project.community;
         let voter_address = sender(ctx);
         assert!(vec_set::contains(&mut com.voters, &voter_address), EVoted);

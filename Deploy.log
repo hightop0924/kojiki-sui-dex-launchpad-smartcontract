@@ -10,37 +10,40 @@ Secret Recovery Phrase : [gold boy library giraffe frozen knee fade hamster clog
 Created new keypair for address with scheme ED25519: [0x4ee7734a6ec8b50ea0a44d1b206ef55f18ffefb7be8c7f693991c23e2959950a]
 Secret Recovery Phrase : [staff muffin cheese mother garden crazy pact soda exotic aisle fresh unaware]
 
-# SAKE deploy
+
+
+
+################################################## SAKE deploy #############################################################
 ----- Transaction Digest ----
-5aP8FUAMhm58x8B8v19Ps3ARwMaa6qxxTeBbZmpZHKxf
+FHiBtz7XPnDZv1jYTmMvJA4oykfjCmz12z32eQic3DeB
 ----- Transaction Data ----
-Transaction Signature: [Signature(Ed25519SuiSignature(Ed25519SuiSignature([0, 127, 134, 90, 11, 157, 127, 101, 159, 86, 56, 228, 22, 197, 112, 93, 105, 17, 27, 85, 161, 203, 225, 121, 36, 45, 58, 137, 237, 46, 162, 209, 242, 97, 191, 124, 129, 146, 8, 103, 216, 49, 65, 214, 209, 51, 44, 49, 1, 23, 58, 81, 185, 10, 14, 23, 116, 252, 9, 255, 73, 227, 239, 134, 9, 146, 137, 240, 92, 95, 249, 184, 138, 8, 66, 223, 49, 207, 236, 37, 173, 122, 165, 82, 174, 158, 228, 180, 22, 84, 71, 108, 163, 206, 250, 162, 139])))]
+Transaction Signature: [Signature(Ed25519SuiSignature(Ed25519SuiSignature([0, 216, 204, 203, 89, 30, 72, 208, 175, 244, 250, 92, 250, 163, 148, 157, 5, 150, 171, 135, 42, 141, 251, 120, 223, 16, 8, 57, 79, 47, 243, 182, 140, 69, 236, 221, 114, 8, 124, 225, 189, 7, 200, 76, 222, 113, 24, 31, 39, 67, 131, 147, 94, 79, 60, 12, 111, 12, 196, 101, 85, 127, 66, 177, 1, 146, 137, 240, 92, 95, 249, 184, 138, 8, 66, 223, 49, 207, 236, 37, 173, 122, 165, 82, 174, 158, 228, 180, 22, 84, 71, 108, 163, 206, 250, 162, 139])))]
 Transaction Kind : Programmable
 Inputs: [Pure(SuiPureValue { value_type: Some(Address), value: "0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd" })]
 Commands: [
-  Publish(<modules>,0x0000000000000000000000000000000000000000000000000000000000000001,0x0000000000000000000000000000000000000000000000000000000000000002),
+  Publish(<modules>,0x56919086819449311d3c57bd71f35e0fd033fa681eafaba9731afd79853a354e,0x0000000000000000000000000000000000000000000000000000000000000001,0x0000000000000000000000000000000000000000000000000000000000000002),
   TransferObjects([Result(0)],Input(0)),
 ]
 
 Sender: 0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd
-Gas Payment: Object ID: 0x9aee0af2cf99e021c6b5d40f13279b6bcad6383a64d214aa4d2e86f3800d0d0e, version: 0x42, digest: 9SsGMmSBrg79UBZzHUwXtGMugoRvV7Y6BccfjgaiTkrn 
+Gas Payment: Object ID: 0x15fad573a93c57d2b99ee4e166863f768875365f2af48a1cd3f2b73bbeceaff6, version: 0xc, digest: 7wVNKb8cPURbV8zFknLGnEUcugRqJqS7W3b6edDAhd3D 
 Gas Owner: 0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd
 Gas Price: 1000
-Gas Budget: 100000000
+Gas Budget: 500000000
 
 ----- Transaction Effects ----
 Status : Success
 Created Objects:
-  - ID: 0x3d9d803c97bb257ca0efb39f3a877dc6846cc367948f7f7a9c0b02c45101e8e3 , Owner: Account Address ( 0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd )
-  - ID: 0x81466270382295085a0f9e499124d7b3e2f1f886a597b1acfebe396f773c0874 , Owner: Shared
-  - ID: 0x892333319b077b60a8878db89e60069735fe6c7ab014848963f55d05ac0892c8 , Owner: Account Address ( 0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd )
-  - ID: 0xa8a8ca7d5f9a396a8c25e1c1643d9dd20381deb381cc9d6e39d345c3793da94f , Owner: Immutable
-  - ID: 0xbb17807ee391352296af6b44a7f4118939eff5b2fea60e22fa49beeab415c3bc , Owner: Account Address ( 0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd )
-  - ID: 0xda60dabc78609dec79b8e62b03c5a390dd760c79164bc7e596da40122ee716c4 , Owner: Immutable
-  - ID: 0xdc2a79db0ff7c7d7fb11c8bfb0b8d341e519226976412ddcf6166b13eb9ab05d , Owner: Shared
-  - ID: 0xfca5b2e46b4c3bcda75074be470dce73f105b259f2a50d801d83c2c1acb92d57 , Owner: Immutable
+  - ID: 0x3a54b8ac4470704aab5feef0b74b774753235bfbf5456458610085dfbb413f99 , Owner: Immutable
+  - ID: 0x470c92c3d1bc0cd4e1ce45bf21e3847aabbeb4aaa447b9d179b9c27bc97c88cf , Owner: Account Address ( 0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd )
+  - ID: 0x4c70449f888320919402093d59b34464f6e8ce5c67680f8b68a1283c5b50574d , Owner: Immutable
+  - ID: 0x77e09a5724b75d1f96a0715a0d4441289b8a1a3b3c696b7f58a3fb67f55a70ef , Owner: Shared
+  - ID: 0x843c461eed7a4a5b589aaaf4985ba8cc25c1ea258912f582ea76c5bea97ce139 , Owner: Account Address ( 0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd )
+  - ID: 0xa098cdf52bf77efaf53472fa755e4d2898a25ecb9a96fdba3ee7d404f7d987e0 , Owner: Account Address ( 0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd )
+  - ID: 0xa2317bf6540e8b6b50f0e177720af86086c62da0de33bbfba98b9664ca5d2f5d , Owner: Immutable
+  - ID: 0xdfddba8c15bb1a110b9cd72db7e4c8ed7b99c54c3b95884a12ad40cb1220fdee , Owner: Shared
 Mutated Objects:
-  - ID: 0x9aee0af2cf99e021c6b5d40f13279b6bcad6383a64d214aa4d2e86f3800d0d0e , Owner: Account Address ( 0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd )
+  - ID: 0x15fad573a93c57d2b99ee4e166863f768875365f2af48a1cd3f2b73bbeceaff6 , Owner: Account Address ( 0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd )
 
 ----- Events ----
 Array []
@@ -53,51 +56,16 @@ Array [
             "AddressOwner": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
         },
         "objectType": String("0x2::coin::Coin<0x2::sui::SUI>"),
-        "objectId": String("0x9aee0af2cf99e021c6b5d40f13279b6bcad6383a64d214aa4d2e86f3800d0d0e"),
-        "version": String("67"),
-        "previousVersion": String("66"),
-        "digest": String("Ci5Mf1xdBn9bBdHkRXXbnEPktuDnMHZCwmrbF7ELrwv5"),
-    },
-    Object {
-        "type": String("created"),
-        "sender": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
-        "owner": Object {
-            "AddressOwner": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
-        },
-        "objectType": String("0x2::coin::Coin<0xa8a8ca7d5f9a396a8c25e1c1643d9dd20381deb381cc9d6e39d345c3793da94f::sake::SAKE>"),
-        "objectId": String("0x3d9d803c97bb257ca0efb39f3a877dc6846cc367948f7f7a9c0b02c45101e8e3"),
-        "version": String("67"),
-        "digest": String("CF5UbmTs9enUsJm15Fcty5SFTh3Ckhp1iy6GbwBtZQS3"),
-    },
-    Object {
-        "type": String("created"),
-        "sender": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
-        "owner": Object {
-            "Shared": Object {
-                "initial_shared_version": Number(67),
-            },
-        },
-        "objectType": String("0xa8a8ca7d5f9a396a8c25e1c1643d9dd20381deb381cc9d6e39d345c3793da94f::sake::SakeStorage"),
-        "objectId": String("0x81466270382295085a0f9e499124d7b3e2f1f886a597b1acfebe396f773c0874"),
-        "version": String("67"),
-        "digest": String("Bv9KiKZGxmPmDTi9zgBHbdWQKL3GmMVJFVe5UMM3buEk"),
-    },
-    Object {
-        "type": String("created"),
-        "sender": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
-        "owner": Object {
-            "AddressOwner": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
-        },
-        "objectType": String("0x2::package::UpgradeCap"),
-        "objectId": String("0x892333319b077b60a8878db89e60069735fe6c7ab014848963f55d05ac0892c8"),
-        "version": String("67"),
-        "digest": String("4H9jNczmDWp1NqFTxa7a7SwmrwAdkoTrJZCKDkjKdpWF"),
+        "objectId": String("0x15fad573a93c57d2b99ee4e166863f768875365f2af48a1cd3f2b73bbeceaff6"),
+        "version": String("13"),
+        "previousVersion": String("12"),
+        "digest": String("9N9ohfv7cu4NhQjCapdMtesUyEBFUea6DFmtxu3Te858"),
     },
     Object {
         "type": String("published"),
-        "packageId": String("0xa8a8ca7d5f9a396a8c25e1c1643d9dd20381deb381cc9d6e39d345c3793da94f"),
+        "packageId": String("0x3a54b8ac4470704aab5feef0b74b774753235bfbf5456458610085dfbb413f99"),
         "version": String("1"),
-        "digest": String("9SxcWZT2ipdHphUhJ2Wo7ZQvjVn4z5nqt2VpkoJJ9oxu"),
+        "digest": String("AXLcKzmKj49Yc8gEWMx8R1idnJdgSY7zFbZuYy3BXtFW"),
         "modules": Array [
             String("sake"),
             String("xsake"),
@@ -109,41 +77,76 @@ Array [
         "owner": Object {
             "AddressOwner": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
         },
-        "objectType": String("0xa8a8ca7d5f9a396a8c25e1c1643d9dd20381deb381cc9d6e39d345c3793da94f::sake::SakeAdminCap"),
-        "objectId": String("0xbb17807ee391352296af6b44a7f4118939eff5b2fea60e22fa49beeab415c3bc"),
-        "version": String("67"),
-        "digest": String("5AEBTG2FoRMuSsSdq3hr5b4gDnSxVEe2zUSvytevCnV8"),
+        "objectType": String("0x2::coin::Coin<0x3a54b8ac4470704aab5feef0b74b774753235bfbf5456458610085dfbb413f99::sake::SAKE>"),
+        "objectId": String("0x470c92c3d1bc0cd4e1ce45bf21e3847aabbeb4aaa447b9d179b9c27bc97c88cf"),
+        "version": String("13"),
+        "digest": String("Dwa6KLCs7pGbPJbRneeJHF4ErnG7sMwqV9s29Yti2BiA"),
     },
     Object {
         "type": String("created"),
         "sender": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
         "owner": String("Immutable"),
-        "objectType": String("0x2::coin::CoinMetadata<0xa8a8ca7d5f9a396a8c25e1c1643d9dd20381deb381cc9d6e39d345c3793da94f::xsake::XSAKE>"),
-        "objectId": String("0xda60dabc78609dec79b8e62b03c5a390dd760c79164bc7e596da40122ee716c4"),
-        "version": String("67"),
-        "digest": String("CWxNJ336BX3oF4hy2ypUH8szgZ4feAzotrSqb9GfpzwY"),
+        "objectType": String("0x2::coin::CoinMetadata<0x3a54b8ac4470704aab5feef0b74b774753235bfbf5456458610085dfbb413f99::xsake::XSAKE>"),
+        "objectId": String("0x4c70449f888320919402093d59b34464f6e8ce5c67680f8b68a1283c5b50574d"),
+        "version": String("13"),
+        "digest": String("7fdFCDgKrc8N3T7t6NdW6T2MAb8j6YmEwtqFFJohD8LR"),
     },
     Object {
         "type": String("created"),
         "sender": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
         "owner": Object {
             "Shared": Object {
-                "initial_shared_version": Number(67),
+                "initial_shared_version": Number(13),
             },
         },
-        "objectType": String("0xa8a8ca7d5f9a396a8c25e1c1643d9dd20381deb381cc9d6e39d345c3793da94f::xsake::XSakeStorage"),
-        "objectId": String("0xdc2a79db0ff7c7d7fb11c8bfb0b8d341e519226976412ddcf6166b13eb9ab05d"),
-        "version": String("67"),
-        "digest": String("58idGBFEyjWpFaB42W8CNCEqEJ66FqNVYFyf4d27Foa7"),
+        "objectType": String("0x3a54b8ac4470704aab5feef0b74b774753235bfbf5456458610085dfbb413f99::xsake::XSakeStorage"),
+        "objectId": String("0x77e09a5724b75d1f96a0715a0d4441289b8a1a3b3c696b7f58a3fb67f55a70ef"),
+        "version": String("13"),
+        "digest": String("CxfHYmEqrdEzZgchLHYLsH2FZiSS64natftzVVQXsH52"),
+    },
+    Object {
+        "type": String("created"),
+        "sender": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
+        "owner": Object {
+            "AddressOwner": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
+        },
+        "objectType": String("0x3a54b8ac4470704aab5feef0b74b774753235bfbf5456458610085dfbb413f99::sake::SakeAdminCap"),
+        "objectId": String("0x843c461eed7a4a5b589aaaf4985ba8cc25c1ea258912f582ea76c5bea97ce139"),
+        "version": String("13"),
+        "digest": String("AVvHdnxe94Zw8EA6SdtyGtqXqpQrYFKQEzG7MWthA1DR"),
+    },
+    Object {
+        "type": String("created"),
+        "sender": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
+        "owner": Object {
+            "AddressOwner": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
+        },
+        "objectType": String("0x2::package::UpgradeCap"),
+        "objectId": String("0xa098cdf52bf77efaf53472fa755e4d2898a25ecb9a96fdba3ee7d404f7d987e0"),
+        "version": String("13"),
+        "digest": String("5ZZPsneoZRRhsFtveNmtutYcfoTuq3JLcqWESbjGhWJu"),
     },
     Object {
         "type": String("created"),
         "sender": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
         "owner": String("Immutable"),
-        "objectType": String("0x2::coin::CoinMetadata<0xa8a8ca7d5f9a396a8c25e1c1643d9dd20381deb381cc9d6e39d345c3793da94f::sake::SAKE>"),
-        "objectId": String("0xfca5b2e46b4c3bcda75074be470dce73f105b259f2a50d801d83c2c1acb92d57"),
-        "version": String("67"),
-        "digest": String("3Z6khctSkGbRyfK6sBH7QZvpSaofUstGCZaQp72pSbRC"),
+        "objectType": String("0x2::coin::CoinMetadata<0x3a54b8ac4470704aab5feef0b74b774753235bfbf5456458610085dfbb413f99::sake::SAKE>"),
+        "objectId": String("0xa2317bf6540e8b6b50f0e177720af86086c62da0de33bbfba98b9664ca5d2f5d"),
+        "version": String("13"),
+        "digest": String("6iZ9Vdv2ZqY4opfdTwWM5voN7naKqbxFtQ8oAGLCbxBs"),
+    },
+    Object {
+        "type": String("created"),
+        "sender": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
+        "owner": Object {
+            "Shared": Object {
+                "initial_shared_version": Number(13),
+            },
+        },
+        "objectType": String("0x3a54b8ac4470704aab5feef0b74b774753235bfbf5456458610085dfbb413f99::sake::SakeStorage"),
+        "objectId": String("0xdfddba8c15bb1a110b9cd72db7e4c8ed7b99c54c3b95884a12ad40cb1220fdee"),
+        "version": String("13"),
+        "digest": String("B4hA96K7vy7G4fRzfbBZgdfBh768LsAN5UtdzxVNNNNk"),
     },
 ]
 ----- Balance changes ----
@@ -153,22 +156,25 @@ Array [
             "AddressOwner": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
         },
         "coinType": String("0x2::sui::SUI"),
-        "amount": String("-46108280"),
+        "amount": String("-46655480"),
     },
     Object {
         "owner": Object {
             "AddressOwner": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
         },
-        "coinType": String("0xa8a8ca7d5f9a396a8c25e1c1643d9dd20381deb381cc9d6e39d345c3793da94f::sake::SAKE"),
+        "coinType": String("0x3a54b8ac4470704aab5feef0b74b774753235bfbf5456458610085dfbb413f99::sake::SAKE"),
         "amount": String("600000000000000000"),
     },
 ]
 
-# library deploy
+
+
+
+######################################### library deploy ############################################
 ----- Transaction Digest ----
-CbPRyyb4txUPFECXqhSG1xrBT1ihoUcrfTxK4U48emJG
+DWEAD9Lf1jVQKbUeiT65jeqKfHnM76zie11HwJwsCFEa
 ----- Transaction Data ----
-Transaction Signature: [Signature(Ed25519SuiSignature(Ed25519SuiSignature([0, 209, 237, 179, 194, 224, 149, 143, 161, 133, 36, 132, 190, 41, 165, 199, 140, 134, 44, 229, 44, 56, 219, 253, 90, 199, 119, 41, 180, 251, 94, 14, 177, 61, 223, 114, 20, 240, 154, 241, 101, 172, 46, 68, 177, 134, 62, 102, 71, 131, 87, 34, 152, 133, 183, 119, 105, 160, 71, 122, 136, 100, 245, 202, 7, 146, 137, 240, 92, 95, 249, 184, 138, 8, 66, 223, 49, 207, 236, 37, 173, 122, 165, 82, 174, 158, 228, 180, 22, 84, 71, 108, 163, 206, 250, 162, 139])))]
+Transaction Signature: [Signature(Ed25519SuiSignature(Ed25519SuiSignature([0, 157, 240, 108, 96, 84, 232, 107, 24, 228, 79, 83, 0, 175, 171, 132, 95, 122, 193, 38, 66, 18, 127, 34, 92, 54, 107, 48, 22, 61, 6, 226, 78, 108, 214, 63, 91, 129, 112, 96, 47, 195, 15, 186, 121, 207, 25, 9, 224, 168, 198, 140, 186, 46, 254, 45, 11, 152, 238, 1, 109, 233, 60, 237, 5, 146, 137, 240, 92, 95, 249, 184, 138, 8, 66, 223, 49, 207, 236, 37, 173, 122, 165, 82, 174, 158, 228, 180, 22, 84, 71, 108, 163, 206, 250, 162, 139])))]
 Transaction Kind : Programmable
 Inputs: [Pure(SuiPureValue { value_type: Some(Address), value: "0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd" })]
 Commands: [
@@ -177,18 +183,18 @@ Commands: [
 ]
 
 Sender: 0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd
-Gas Payment: Object ID: 0x9aee0af2cf99e021c6b5d40f13279b6bcad6383a64d214aa4d2e86f3800d0d0e, version: 0x40, digest: 2UgUEiHpEfhWJAB2oaiqGNVAZN6iwQwQmwiSkPb9CY3V 
+Gas Payment: Object ID: 0x15fad573a93c57d2b99ee4e166863f768875365f2af48a1cd3f2b73bbeceaff6, version: 0xa, digest: 7DzHdHg9DRQEA7Kgwr8U14uGeErJMF65VNCKquMLLWd 
 Gas Owner: 0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd
 Gas Price: 1000
-Gas Budget: 100000000
+Gas Budget: 500000000
 
 ----- Transaction Effects ----
 Status : Success
 Created Objects:
-  - ID: 0x99e3106048e51dfc0b4be926eaa80642be2e24945e432429cc3a03296b77b4af , Owner: Immutable
-  - ID: 0xe7b0f0161f78c8e59a04b2d425394b30e16bdf1c569ccb4acc7f8550420c68b5 , Owner: Account Address ( 0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd )
+  - ID: 0x56919086819449311d3c57bd71f35e0fd033fa681eafaba9731afd79853a354e , Owner: Immutable
+  - ID: 0xf2373dbc2537c96e2b039267e9cc7cbc996128c44b0cc97e15bb04f4d68678a3 , Owner: Account Address ( 0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd )
 Mutated Objects:
-  - ID: 0x9aee0af2cf99e021c6b5d40f13279b6bcad6383a64d214aa4d2e86f3800d0d0e , Owner: Account Address ( 0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd )
+  - ID: 0x15fad573a93c57d2b99ee4e166863f768875365f2af48a1cd3f2b73bbeceaff6 , Owner: Account Address ( 0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd )
 
 ----- Events ----
 Array []
@@ -201,16 +207,16 @@ Array [
             "AddressOwner": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
         },
         "objectType": String("0x2::coin::Coin<0x2::sui::SUI>"),
-        "objectId": String("0x9aee0af2cf99e021c6b5d40f13279b6bcad6383a64d214aa4d2e86f3800d0d0e"),
-        "version": String("65"),
-        "previousVersion": String("64"),
-        "digest": String("5pfNG3wgqpJr48HVUi2QwzpA5b2vS6R11e7yKF5S6HjR"),
+        "objectId": String("0x15fad573a93c57d2b99ee4e166863f768875365f2af48a1cd3f2b73bbeceaff6"),
+        "version": String("11"),
+        "previousVersion": String("10"),
+        "digest": String("FcGfVhuxP7d8rWxNin7wX86iLztoDAAJJm9d6AL6ALgv"),
     },
     Object {
         "type": String("published"),
-        "packageId": String("0x99e3106048e51dfc0b4be926eaa80642be2e24945e432429cc3a03296b77b4af"),
+        "packageId": String("0x56919086819449311d3c57bd71f35e0fd033fa681eafaba9731afd79853a354e"),
         "version": String("1"),
-        "digest": String("HbxAMgLxm3egD9esxQM7oboNQpMTV1GrUN3DscbmBS7F"),
+        "digest": String("8CyXiwrWCTTtByjZ49PidapF9xjF7SKiSGcghrRaLYCE"),
         "modules": Array [
             String("comparator"),
             String("math"),
@@ -227,9 +233,9 @@ Array [
             "AddressOwner": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
         },
         "objectType": String("0x2::package::UpgradeCap"),
-        "objectId": String("0xe7b0f0161f78c8e59a04b2d425394b30e16bdf1c569ccb4acc7f8550420c68b5"),
-        "version": String("65"),
-        "digest": String("Es3XfVUETqZkc9XXQdN8who8yxKto5GCPgrejFKwhq5c"),
+        "objectId": String("0xf2373dbc2537c96e2b039267e9cc7cbc996128c44b0cc97e15bb04f4d68678a3"),
+        "version": String("11"),
+        "digest": String("DZhueRK9xUTs2PfnZrMTEmFPUKosHHhGiZSALfX9FTFD"),
     },
 ]
 ----- Balance changes ----
@@ -244,20 +250,20 @@ Array [
 ]
 
 
-// dex deploy
+################################################ dex deploy ##############################################
 ----- Transaction Digest ----
-GzeoDFaZJjUpyc5Mxhw2H569SYnGEVx688fn1YyiU9D4
+5d9X3gHhjgsLfd5oRiyAY8Yd55Qextt4kmKKLsczAQog
 ----- Transaction Data ----
-Transaction Signature: [Signature(Ed25519SuiSignature(Ed25519SuiSignature([0, 41, 128, 44, 240, 89, 210, 128, 246, 24, 208, 89, 170, 139, 165, 185, 99, 176, 188, 212, 49, 171, 207, 6, 115, 236, 165, 26, 0, 84, 157, 191, 173, 235, 205, 231, 119, 129, 228, 161, 66, 129, 128, 175, 178, 63, 176, 201, 192, 232, 160, 12, 142, 101, 134, 38, 249, 155, 36, 27, 162, 189, 173, 77, 2, 146, 137, 240, 92, 95, 249, 184, 138, 8, 66, 223, 49, 207, 236, 37, 173, 122, 165, 82, 174, 158, 228, 180, 22, 84, 71, 108, 163, 206, 250, 162, 139])))]
+Transaction Signature: [Signature(Ed25519SuiSignature(Ed25519SuiSignature([0, 116, 19, 173, 214, 87, 240, 73, 9, 173, 253, 125, 119, 221, 34, 47, 233, 28, 109, 209, 9, 14, 65, 11, 198, 197, 149, 47, 246, 54, 108, 217, 153, 94, 72, 153, 240, 58, 250, 62, 219, 37, 105, 107, 213, 159, 2, 191, 1, 8, 17, 8, 121, 14, 38, 59, 90, 182, 167, 104, 42, 153, 189, 208, 1, 146, 137, 240, 92, 95, 249, 184, 138, 8, 66, 223, 49, 207, 236, 37, 173, 122, 165, 82, 174, 158, 228, 180, 22, 84, 71, 108, 163, 206, 250, 162, 139])))]
 Transaction Kind : Programmable
 Inputs: [Pure(SuiPureValue { value_type: Some(Address), value: "0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd" })]
 Commands: [
-  Publish(<modules>,0x99e3106048e51dfc0b4be926eaa80642be2e24945e432429cc3a03296b77b4af,0x0000000000000000000000000000000000000000000000000000000000000001,0x0000000000000000000000000000000000000000000000000000000000000002,0xa8a8ca7d5f9a396a8c25e1c1643d9dd20381deb381cc9d6e39d345c3793da94f),
+  Publish(<modules>,0x56919086819449311d3c57bd71f35e0fd033fa681eafaba9731afd79853a354e,0x0000000000000000000000000000000000000000000000000000000000000001,0x0000000000000000000000000000000000000000000000000000000000000002,0x3a54b8ac4470704aab5feef0b74b774753235bfbf5456458610085dfbb413f99),
   TransferObjects([Result(0)],Input(0)),
 ]
 
 Sender: 0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd
-Gas Payment: Object ID: 0x447037b374b3b94aea9920597c4fc499bf2ade639e8a3b089bc5f22006fcf108, version: 0x8d122, digest: 6hUVeikj8jGfTT3qsMoJf4z2CojPN4Hjt9D4UweCejuF 
+Gas Payment: Object ID: 0x15fad573a93c57d2b99ee4e166863f768875365f2af48a1cd3f2b73bbeceaff6, version: 0xd, digest: 9N9ohfv7cu4NhQjCapdMtesUyEBFUea6DFmtxu3Te858 
 Gas Owner: 0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd
 Gas Price: 1000
 Gas Budget: 500000000
@@ -265,31 +271,31 @@ Gas Budget: 500000000
 ----- Transaction Effects ----
 Status : Success
 Created Objects:
-  - ID: 0x2ad75b0283d249d71c5cc702b44b6ad1020bb24c82af0fedf99218934c2d1648 , Owner: Object ID: ( 0xbe89b38911bc56017a7821398a1b26f5fea3ae42560693682188958f06ad0429 )
-  - ID: 0x2b20b649ad8d6a805b0a65582432085fa77c2c26c8095ffdf6c017c8ff234de9 , Owner: Object ID: ( 0x0f28611ba5ca9cbcb9986e232a412d0b1ccbe771e2f934719fac6dec77b41994 )
-  - ID: 0x2b7891e45bb7b859e716d3d785f17ab83a94efbeb2da243a03d99cb28b65a5ac , Owner: Account Address ( 0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd )
-  - ID: 0x41b9a7682d5cf744d872c81887a8b715732641b8b6b3699bee71f19f3f2f4c90 , Owner: Shared
-  - ID: 0x4a15795a8d6194cb394ef64fbb70db1b864734ed1a20516206f103775c4d32b6 , Owner: Shared
-  - ID: 0x4e63002747e02a0a704e2f7298155ace6838acdc521ac41d71060062c7009c29 , Owner: Object ID: ( 0x54cc77861f2b72f8848d897f671143c67e1861cd22a0e0260ace439be6262a03 )
-  - ID: 0x54cc77861f2b72f8848d897f671143c67e1861cd22a0e0260ace439be6262a03 , Owner: Object ID: ( 0xa880b01ea20201da32175c41be92d7b8a0f413778deeae16346b0b6297b9adf3 )
-  - ID: 0x58dd46e6cbcf5daf98536e5a1838ccfa205eab747eb6d08ba8ff672c1694b7b9 , Owner: Immutable
-  - ID: 0x8c2cc549d1bad8736da99937d617d554efb133a05f1f01730e41c13888014dfb , Owner: Shared
-  - ID: 0xbe89b38911bc56017a7821398a1b26f5fea3ae42560693682188958f06ad0429 , Owner: Object ID: ( 0x467aa4ce8237a979f69f9b89b92b43c847a13b53ffabef9bc61957c5a2c3c27c )
-  - ID: 0xe40c6896f6473a7fc49d5805b6aa6cdfef86e507a198cfd170f5fca9c5917d23 , Owner: Account Address ( 0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd )
+  - ID: 0x03ad1609283ac347ec43d84628fa63728a41e62182001e6e031221458325bd8c , Owner: Shared
+  - ID: 0x1a366b372ab81b9ed7387526043fdfc870ee50d008bd9199dd122d0128e6b817 , Owner: Account Address ( 0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd )
+  - ID: 0x29f5fb38ed95d2c2af52568aed438393436dc389ff1f42445865d011f01749ec , Owner: Object ID: ( 0x5e21b96d87ed5582efa39b74305538a16b0f008b959c4663e48b423faf62bd0a )
+  - ID: 0x2cacbb76f64476ab4267e8821c591489ac6a4a29d3282d7d199d01e976d37cec , Owner: Account Address ( 0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd )
+  - ID: 0x4cc1f1d2a60d867995f8501f8a3abd7c8ea2b231d9a49fdab9541abb036cc0f5 , Owner: Shared
+  - ID: 0x4ff5d043a3589c268b88235bb6e46032e5eab89c8e0d5832f185da5cda7e721a , Owner: Immutable
+  - ID: 0x5e21b96d87ed5582efa39b74305538a16b0f008b959c4663e48b423faf62bd0a , Owner: Object ID: ( 0xa5bb61a67fff4179855df05ebece1ec2fb3fa5598f0a03a92d3a30d5c4d2a1f9 )
+  - ID: 0x9f6ba4cfa4525ee174d48586192744465e82448cf87b4d2accd70eb4902c342a , Owner: Shared
+  - ID: 0xb1e8124d23e6c2ad8d4488db83faee46c96f2e12f7cfe6a090aa0377e2443110 , Owner: Object ID: ( 0x8dd5d3f788cbaa68b02b5d2f34e3916d9d35fccc9a1153033cb9c3a72e5cc449 )
+  - ID: 0xbbd84f7ee42cfe9a730785819728c1db1cc54d077dafb396593f0a5bf8979cc6 , Owner: Object ID: ( 0xaa433960373353e53dda1d9432314c5a0da81cb2370fa39eb932032cf0f37fc9 )
+  - ID: 0xdbc2153c45cf5092c52c1e79eaf53d3ac6306fb90d9f713f5e92ef0f412041f8 , Owner: Object ID: ( 0xbbd84f7ee42cfe9a730785819728c1db1cc54d077dafb396593f0a5bf8979cc6 )
 Mutated Objects:
-  - ID: 0x447037b374b3b94aea9920597c4fc499bf2ade639e8a3b089bc5f22006fcf108 , Owner: Account Address ( 0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd )
+  - ID: 0x15fad573a93c57d2b99ee4e166863f768875365f2af48a1cd3f2b73bbeceaff6 , Owner: Account Address ( 0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd )
 
 ----- Events ----
 Array [
     Object {
         "id": Object {
-            "txDigest": String("GzeoDFaZJjUpyc5Mxhw2H569SYnGEVx688fn1YyiU9D4"),
+            "txDigest": String("5d9X3gHhjgsLfd5oRiyAY8Yd55Qextt4kmKKLsczAQog"),
             "eventSeq": String("0"),
         },
-        "packageId": String("0x58dd46e6cbcf5daf98536e5a1838ccfa205eab747eb6d08ba8ff672c1694b7b9"),
+        "packageId": String("0x4ff5d043a3589c268b88235bb6e46032e5eab89c8e0d5832f185da5cda7e721a"),
         "transactionModule": String("master_chef"),
         "sender": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
-        "type": String("0x58dd46e6cbcf5daf98536e5a1838ccfa205eab747eb6d08ba8ff672c1694b7b9::master_chef::AddPool<0xa8a8ca7d5f9a396a8c25e1c1643d9dd20381deb381cc9d6e39d345c3793da94f::sake::SAKE>"),
+        "type": String("0x4ff5d043a3589c268b88235bb6e46032e5eab89c8e0d5832f185da5cda7e721a::master_chef::AddPool<0x3a54b8ac4470704aab5feef0b74b774753235bfbf5456458610085dfbb413f99::sake::SAKE>"),
         "parsedJson": Object {
             "allocation_points": String("1000"),
             "key": String("0"),
@@ -306,32 +312,23 @@ Array [
             "AddressOwner": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
         },
         "objectType": String("0x2::coin::Coin<0x2::sui::SUI>"),
-        "objectId": String("0x447037b374b3b94aea9920597c4fc499bf2ade639e8a3b089bc5f22006fcf108"),
-        "version": String("577827"),
-        "previousVersion": String("577826"),
-        "digest": String("B97ni4aDJAh3JkiQDKWkSXAWrPyXUfwxVtFP9C6bJGyA"),
+        "objectId": String("0x15fad573a93c57d2b99ee4e166863f768875365f2af48a1cd3f2b73bbeceaff6"),
+        "version": String("14"),
+        "previousVersion": String("13"),
+        "digest": String("3rJa1g1H2Upjy4WyXBbUT43sTconeRLCJh4vVbVkG3hB"),
     },
     Object {
         "type": String("created"),
         "sender": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
         "owner": Object {
-            "ObjectOwner": String("0xbe89b38911bc56017a7821398a1b26f5fea3ae42560693682188958f06ad0429"),
+            "Shared": Object {
+                "initial_shared_version": Number(14),
+            },
         },
-        "objectType": String("0x2::object_bag::ObjectBag"),
-        "objectId": String("0x2ad75b0283d249d71c5cc702b44b6ad1020bb24c82af0fedf99218934c2d1648"),
-        "version": String("577827"),
-        "digest": String("txDsmviQLieLWEJKDGp1MtrpqAmKTYH44vvNUDE1V65"),
-    },
-    Object {
-        "type": String("created"),
-        "sender": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
-        "owner": Object {
-            "ObjectOwner": String("0x0f28611ba5ca9cbcb9986e232a412d0b1ccbe771e2f934719fac6dec77b41994"),
-        },
-        "objectType": String("0x2::dynamic_field::Field<0x1::ascii::String, 0x58dd46e6cbcf5daf98536e5a1838ccfa205eab747eb6d08ba8ff672c1694b7b9::master_chef::PoolKey>"),
-        "objectId": String("0x2b20b649ad8d6a805b0a65582432085fa77c2c26c8095ffdf6c017c8ff234de9"),
-        "version": String("577827"),
-        "digest": String("CguZEGxaAv4VPQT4Hg3BnBTPFi1m3JX6pLyeRehVxvZa"),
+        "objectType": String("0x4ff5d043a3589c268b88235bb6e46032e5eab89c8e0d5832f185da5cda7e721a::master_chef::MasterChefStorage"),
+        "objectId": String("0x03ad1609283ac347ec43d84628fa63728a41e62182001e6e031221458325bd8c"),
+        "version": String("14"),
+        "digest": String("7RG5MRRgvDn28gRXN2ajq3mtQGqJ86D9nUQLHVnDk6ka"),
     },
     Object {
         "type": String("created"),
@@ -339,64 +336,51 @@ Array [
         "owner": Object {
             "AddressOwner": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
         },
-        "objectType": String("0x58dd46e6cbcf5daf98536e5a1838ccfa205eab747eb6d08ba8ff672c1694b7b9::master_chef::MasterChefAdmin"),
-        "objectId": String("0x2b7891e45bb7b859e716d3d785f17ab83a94efbeb2da243a03d99cb28b65a5ac"),
-        "version": String("577827"),
-        "digest": String("9hx6T4Zw6PPphvJLwk1VxXd33voEHBjA1yq6UydWJSj8"),
+        "objectType": String("0x4ff5d043a3589c268b88235bb6e46032e5eab89c8e0d5832f185da5cda7e721a::master_chef::MasterChefAdmin"),
+        "objectId": String("0x1a366b372ab81b9ed7387526043fdfc870ee50d008bd9199dd122d0128e6b817"),
+        "version": String("14"),
+        "digest": String("7YjucvYyo1GxBe8yZX8wKqCvqxfajfupW1yWzFFErwZS"),
+    },
+    Object {
+        "type": String("created"),
+        "sender": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
+        "owner": Object {
+            "ObjectOwner": String("0x5e21b96d87ed5582efa39b74305538a16b0f008b959c4663e48b423faf62bd0a"),
+        },
+        "objectType": String("0x2::object_bag::ObjectBag"),
+        "objectId": String("0x29f5fb38ed95d2c2af52568aed438393436dc389ff1f42445865d011f01749ec"),
+        "version": String("14"),
+        "digest": String("2ixoaWj5juezdqyaCxMBc2yeH1hfJzSv5SJ4hLvSCSuv"),
+    },
+    Object {
+        "type": String("created"),
+        "sender": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
+        "owner": Object {
+            "AddressOwner": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
+        },
+        "objectType": String("0x2::package::UpgradeCap"),
+        "objectId": String("0x2cacbb76f64476ab4267e8821c591489ac6a4a29d3282d7d199d01e976d37cec"),
+        "version": String("14"),
+        "digest": String("AB4VoQRUqsaGPKpZ8bZxSswe1QNjFrTtgKJXL5Wy5ZFy"),
     },
     Object {
         "type": String("created"),
         "sender": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
         "owner": Object {
             "Shared": Object {
-                "initial_shared_version": Number(577827),
+                "initial_shared_version": Number(14),
             },
         },
-        "objectType": String("0x58dd46e6cbcf5daf98536e5a1838ccfa205eab747eb6d08ba8ff672c1694b7b9::master_chef::MasterChefStorage"),
-        "objectId": String("0x41b9a7682d5cf744d872c81887a8b715732641b8b6b3699bee71f19f3f2f4c90"),
-        "version": String("577827"),
-        "digest": String("9gctnVgiwgp4oaRdUe1xaxNKuMQrL1KaCDmFQ7J17hxg"),
-    },
-    Object {
-        "type": String("created"),
-        "sender": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
-        "owner": Object {
-            "Shared": Object {
-                "initial_shared_version": Number(577827),
-            },
-        },
-        "objectType": String("0x58dd46e6cbcf5daf98536e5a1838ccfa205eab747eb6d08ba8ff672c1694b7b9::master_chef::AccountStorage"),
-        // "objectId": String("0x4a15795a8d6194cb394ef64fbb70db1b864734ed1a20516206f103775c4d32b6"),
-        "version": String("577827"),
-        "digest": String("CmpjtxWXpVCgNBDvUZgKgbgRe4fgGL2zYgRw24yZMjLe"),
-    },
-    Object {
-        "type": String("created"),
-        "sender": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
-        "owner": Object {
-            "ObjectOwner": String("0x54cc77861f2b72f8848d897f671143c67e1861cd22a0e0260ace439be6262a03"),
-        },
-        "objectType": String("0x58dd46e6cbcf5daf98536e5a1838ccfa205eab747eb6d08ba8ff672c1694b7b9::master_chef::Pool"),
-        "objectId": String("0x4e63002747e02a0a704e2f7298155ace6838acdc521ac41d71060062c7009c29"),
-        "version": String("577827"),
-        "digest": String("78pyhUzY5BvS9AWn6kd8tsyRFZ3tb6G81CN3qYeZcc7g"),
-    },
-    Object {
-        "type": String("created"),
-        "sender": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
-        "owner": Object {
-            "ObjectOwner": String("0xa880b01ea20201da32175c41be92d7b8a0f413778deeae16346b0b6297b9adf3"),
-        },
-        "objectType": String("0x2::dynamic_field::Field<0x2::dynamic_object_field::Wrapper<u64>, 0x2::object::ID>"),
-        "objectId": String("0x54cc77861f2b72f8848d897f671143c67e1861cd22a0e0260ace439be6262a03"),
-        "version": String("577827"),
-        "digest": String("G2wmRVQbCXDcXNzY8kP4CaEfwuDKzd39zzuhZmxaDYnM"),
+        "objectType": String("0x4ff5d043a3589c268b88235bb6e46032e5eab89c8e0d5832f185da5cda7e721a::master_chef::AccountStorage"),
+        "objectId": String("0x4cc1f1d2a60d867995f8501f8a3abd7c8ea2b231d9a49fdab9541abb036cc0f5"),
+        "version": String("14"),
+        "digest": String("4HUr8Bt1aFDkn3PRmZg63xShs47tJRnSMhNcCH19awZL"),
     },
     Object {
         "type": String("published"),
-        "packageId": String("0x58dd46e6cbcf5daf98536e5a1838ccfa205eab747eb6d08ba8ff672c1694b7b9"),
+        "packageId": String("0x4ff5d043a3589c268b88235bb6e46032e5eab89c8e0d5832f185da5cda7e721a"),
         "version": String("1"),
-        "digest": String("3o6R1MURbn6U53ZfiK3tonXVkfsSFzRJpUK1CHzH2UWu"),
+        "digest": String("7Y4aDScLTwwQEpZ7gnXYyFYnsnuMqMtvQ5ZcVDU7DQRQ"),
         "modules": Array [
             String("kojikiswap"),
             String("kojikiswap_library"),
@@ -408,36 +392,58 @@ Array [
         "type": String("created"),
         "sender": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
         "owner": Object {
-            "Shared": Object {
-                "initial_shared_version": Number(577827),
-            },
-        },
-        "objectType": String("0x58dd46e6cbcf5daf98536e5a1838ccfa205eab747eb6d08ba8ff672c1694b7b9::kojikiswap::LiquidityPools"),
-        "objectId": String("0x8c2cc549d1bad8736da99937d617d554efb133a05f1f01730e41c13888014dfb"),
-        "version": String("577827"),
-        "digest": String("E7sjRLuS4u8anVTDZ3WqxcRShdSDVTEgjGccAeXMM1rb"),
-    },
-    Object {
-        "type": String("created"),
-        "sender": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
-        "owner": Object {
-            "ObjectOwner": String("0x467aa4ce8237a979f69f9b89b92b43c847a13b53ffabef9bc61957c5a2c3c27c"),
+            "ObjectOwner": String("0xa5bb61a67fff4179855df05ebece1ec2fb3fa5598f0a03a92d3a30d5c4d2a1f9"),
         },
         "objectType": String("0x2::dynamic_field::Field<0x2::dynamic_object_field::Wrapper<u64>, 0x2::object::ID>"),
-        "objectId": String("0xbe89b38911bc56017a7821398a1b26f5fea3ae42560693682188958f06ad0429"),
-        "version": String("577827"),
-        "digest": String("9kTvh2D8gdMZUa2cSdR8m96KToitL6R5s9Qo3uyrjUte"),
+        "objectId": String("0x5e21b96d87ed5582efa39b74305538a16b0f008b959c4663e48b423faf62bd0a"),
+        "version": String("14"),
+        "digest": String("63HVGb3wPWTZT9FYgSzcEGz77ktpmEf8AWnZBvJWqVik"),
     },
     Object {
         "type": String("created"),
         "sender": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
         "owner": Object {
-            "AddressOwner": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
+            "Shared": Object {
+                "initial_shared_version": Number(14),
+            },
         },
-        "objectType": String("0x2::package::UpgradeCap"),
-        "objectId": String("0xe40c6896f6473a7fc49d5805b6aa6cdfef86e507a198cfd170f5fca9c5917d23"),
-        "version": String("577827"),
-        "digest": String("7SUr44raWfHhhdRXXTUXG9qvfuxEuJfVmAwbCUAWcZEn"),
+        "objectType": String("0x4ff5d043a3589c268b88235bb6e46032e5eab89c8e0d5832f185da5cda7e721a::kojikiswap::LiquidityPools"),
+        "objectId": String("0x9f6ba4cfa4525ee174d48586192744465e82448cf87b4d2accd70eb4902c342a"),
+        "version": String("14"),
+        "digest": String("CZAZ4EiNLA1TZUyzz4nTRM5HLEa2YJTYwih9tAxDu1B4"),
+    },
+    Object {
+        "type": String("created"),
+        "sender": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
+        "owner": Object {
+            "ObjectOwner": String("0x8dd5d3f788cbaa68b02b5d2f34e3916d9d35fccc9a1153033cb9c3a72e5cc449"),
+        },
+        "objectType": String("0x2::dynamic_field::Field<0x1::ascii::String, 0x4ff5d043a3589c268b88235bb6e46032e5eab89c8e0d5832f185da5cda7e721a::master_chef::PoolKey>"),
+        "objectId": String("0xb1e8124d23e6c2ad8d4488db83faee46c96f2e12f7cfe6a090aa0377e2443110"),
+        "version": String("14"),
+        "digest": String("HtVfxEUihcebPVTVMfmbb1WbqVLBceUcAK9E7a6Amdyr"),
+    },
+    Object {
+        "type": String("created"),
+        "sender": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
+        "owner": Object {
+            "ObjectOwner": String("0xaa433960373353e53dda1d9432314c5a0da81cb2370fa39eb932032cf0f37fc9"),
+        },
+        "objectType": String("0x2::dynamic_field::Field<0x2::dynamic_object_field::Wrapper<u64>, 0x2::object::ID>"),
+        "objectId": String("0xbbd84f7ee42cfe9a730785819728c1db1cc54d077dafb396593f0a5bf8979cc6"),
+        "version": String("14"),
+        "digest": String("6h6AgJUmg948TYAAS8frUXm89gnvD1pd637So9RxCiiv"),
+    },
+    Object {
+        "type": String("created"),
+        "sender": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
+        "owner": Object {
+            "ObjectOwner": String("0xbbd84f7ee42cfe9a730785819728c1db1cc54d077dafb396593f0a5bf8979cc6"),
+        },
+        "objectType": String("0x4ff5d043a3589c268b88235bb6e46032e5eab89c8e0d5832f185da5cda7e721a::master_chef::Pool"),
+        "objectId": String("0xdbc2153c45cf5092c52c1e79eaf53d3ac6306fb90d9f713f5e92ef0f412041f8"),
+        "version": String("14"),
+        "digest": String("GaxBoXM6ckEkScZ77eQYHjfNKEMhWMm1ErXcJeA8tgqP"),
     },
 ]
 ----- Balance changes ----
@@ -447,42 +453,43 @@ Array [
             "AddressOwner": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
         },
         "coinType": String("0x2::sui::SUI"),
-        "amount": String("-160561080"),
+        "amount": String("-162058280"),
     },
 ]
 
 
-// token deploy (For USDC, USDT)
+
+######################################### token deploy (For USDC, USDT) #######################################################
 ----- Transaction Digest ----
-ChCqteY9vT1uFH91feouHgeBTQkk1oUkoAaBzNS6d1Lm
+8rb54xbnS39AYFxrnHFNJU7qH9tmWDQ6jytVWDi9DhBc
 ----- Transaction Data ----
-Transaction Signature: [Signature(Ed25519SuiSignature(Ed25519SuiSignature([0, 21, 166, 152, 74, 162, 210, 56, 40, 252, 20, 50, 237, 37, 86, 204, 106, 145, 203, 26, 115, 228, 202, 77, 197, 83, 163, 111, 67, 247, 204, 94, 106, 166, 16, 180, 90, 166, 130, 185, 33, 6, 145, 152, 4, 114, 208, 105, 37, 218, 70, 198, 253, 238, 37, 134, 168, 19, 128, 66, 193, 57, 216, 60, 14, 146, 137, 240, 92, 95, 249, 184, 138, 8, 66, 223, 49, 207, 236, 37, 173, 122, 165, 82, 174, 158, 228, 180, 22, 84, 71, 108, 163, 206, 250, 162, 139])))]
+Transaction Signature: [Signature(Ed25519SuiSignature(Ed25519SuiSignature([0, 81, 119, 4, 54, 213, 5, 218, 16, 254, 133, 142, 129, 74, 131, 125, 6, 110, 9, 91, 226, 166, 64, 27, 100, 46, 88, 225, 162, 120, 150, 151, 26, 234, 176, 3, 176, 118, 67, 249, 50, 33, 71, 251, 114, 232, 198, 224, 129, 112, 113, 57, 163, 240, 182, 242, 181, 169, 228, 234, 6, 17, 44, 23, 1, 146, 137, 240, 92, 95, 249, 184, 138, 8, 66, 223, 49, 207, 236, 37, 173, 122, 165, 82, 174, 158, 228, 180, 22, 84, 71, 108, 163, 206, 250, 162, 139])))]
 Transaction Kind : Programmable
 Inputs: [Pure(SuiPureValue { value_type: Some(Address), value: "0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd" })]
 Commands: [
-  Publish(<modules>,0x99e3106048e51dfc0b4be926eaa80642be2e24945e432429cc3a03296b77b4af,0x0000000000000000000000000000000000000000000000000000000000000001,0x0000000000000000000000000000000000000000000000000000000000000002),
+  Publish(<modules>,0x0000000000000000000000000000000000000000000000000000000000000001,0x0000000000000000000000000000000000000000000000000000000000000002),
   TransferObjects([Result(0)],Input(0)),
 ]
 
 Sender: 0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd
-Gas Payment: Object ID: 0x9aee0af2cf99e021c6b5d40f13279b6bcad6383a64d214aa4d2e86f3800d0d0e, version: 0x46, digest: wzuFSPNew6AG5yqrdrxjvazsnk4ELpL4FmjgF8GUx6m 
+Gas Payment: Object ID: 0x15fad573a93c57d2b99ee4e166863f768875365f2af48a1cd3f2b73bbeceaff6, version: 0xb, digest: FcGfVhuxP7d8rWxNin7wX86iLztoDAAJJm9d6AL6ALgv 
 Gas Owner: 0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd
 Gas Price: 1000
-Gas Budget: 100000000
+Gas Budget: 500000000
 
 ----- Transaction Effects ----
 Status : Success
 Created Objects:
-  - ID: 0x08225f283850da174fdbcda930adc0db74b12e0c3ad696167044eb9f740676c5 , Owner: Immutable
-  - ID: 0x1fd4ab857baaaf5a21fd03ffde236540e5f8a155e0c8e36019cef67abc85fc14 , Owner: Immutable
-  - ID: 0x2a103227aa10cd45f3f7c8a2c03370ef9c7b6b707d30e1bfab8b9e1f4d655d1d , Owner: Immutable
-  - ID: 0x4cd18498983981544af5038e6fb6dccd1d5e77bf662a2f42b84811e70bcec30c , Owner: Account Address ( 0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd )
-  - ID: 0x5a9a91f485f58d8187e6a35d71730be14723ea432535f16544a1ba63cb3cda39 , Owner: Account Address ( 0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd )
-  - ID: 0x7098dd388a20e40ec7881653a96773382207db179dede7e1687feb1966da2af9 , Owner: Account Address ( 0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd )
-  - ID: 0xa79e39b974cafef2c9c9796678a487a4df1c3851a8496f8e85acc143603b8bfc , Owner: Account Address ( 0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd )
-  - ID: 0xd794f8d2d3837cf8cdc8441d1de4f4366f31cdd16126584226deca362f9ac1b5 , Owner: Account Address ( 0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd )
+  - ID: 0x36c3caa66233e1aa2fde07e584c7825f351a579bca79d2af85ffbd4050b22e7a , Owner: Immutable
+  - ID: 0x3e0be82618bb2f82cf5e24a1988a7890e759b9ae8b1ff70a43475a34db45674c , Owner: Immutable
+  - ID: 0x9257d312994a4961b14c01d918b34eed97f7f9c5e637584ba77736696b0c7b8c , Owner: Account Address ( 0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd )
+  - ID: 0xa4442b9d6edf515fa112766a3240e54c94c5324f51905f08b9f01258c23a9001 , Owner: Account Address ( 0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd )
+  - ID: 0xb579ca008b337fe6035a8eaae02f57134cfd514b78b8bf20504d04d39a7b36b0 , Owner: Immutable
+  - ID: 0xc8df945bc7d96540dc3435198f89a067fe39d3fc6ca106e6d59f2c79b8a7f746 , Owner: Account Address ( 0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd )
+  - ID: 0xe0b8fd30a9d5872c4164a4477723ca99dcf11415035756c12b27f8e0790c696f , Owner: Account Address ( 0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd )
+  - ID: 0xe5506bb3a7ddaf13a7c5fdcc5b4e442cfcdd8d2dd474fa71d973504c42c88192 , Owner: Account Address ( 0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd )
 Mutated Objects:
-  - ID: 0x9aee0af2cf99e021c6b5d40f13279b6bcad6383a64d214aa4d2e86f3800d0d0e , Owner: Account Address ( 0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd )
+  - ID: 0x15fad573a93c57d2b99ee4e166863f768875365f2af48a1cd3f2b73bbeceaff6 , Owner: Account Address ( 0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd )
 
 ----- Events ----
 Array []
@@ -495,34 +502,16 @@ Array [
             "AddressOwner": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
         },
         "objectType": String("0x2::coin::Coin<0x2::sui::SUI>"),
-        "objectId": String("0x9aee0af2cf99e021c6b5d40f13279b6bcad6383a64d214aa4d2e86f3800d0d0e"),
-        "version": String("71"),
-        "previousVersion": String("70"),
-        "digest": String("7jfkjnu3b5ZBujm9eDoDKDWv44LfHsrU6Xt7GSNujmRv"),
-    },
-    Object {
-        "type": String("created"),
-        "sender": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
-        "owner": String("Immutable"),
-        "objectType": String("0x2::coin::CoinMetadata<0x2a103227aa10cd45f3f7c8a2c03370ef9c7b6b707d30e1bfab8b9e1f4d655d1d::usdc::USDC>"),
-        "objectId": String("0x08225f283850da174fdbcda930adc0db74b12e0c3ad696167044eb9f740676c5"),
-        "version": String("71"),
-        "digest": String("HHrfgRZq7EYyA7Mr8K5RjjMttDDyeNgLPmekibmt65gh"),
-    },
-    Object {
-        "type": String("created"),
-        "sender": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
-        "owner": String("Immutable"),
-        "objectType": String("0x2::coin::CoinMetadata<0x2a103227aa10cd45f3f7c8a2c03370ef9c7b6b707d30e1bfab8b9e1f4d655d1d::usdt::USDT>"),
-        "objectId": String("0x1fd4ab857baaaf5a21fd03ffde236540e5f8a155e0c8e36019cef67abc85fc14"),
-        "version": String("71"),
-        "digest": String("678vk1BcVH8FkNdZyUbPP5GnEEK3Dru4VFATM5kF9aVv"),
+        "objectId": String("0x15fad573a93c57d2b99ee4e166863f768875365f2af48a1cd3f2b73bbeceaff6"),
+        "version": String("12"),
+        "previousVersion": String("11"),
+        "digest": String("7wVNKb8cPURbV8zFknLGnEUcugRqJqS7W3b6edDAhd3D"),
     },
     Object {
         "type": String("published"),
-        "packageId": String("0x2a103227aa10cd45f3f7c8a2c03370ef9c7b6b707d30e1bfab8b9e1f4d655d1d"),
+        "packageId": String("0x36c3caa66233e1aa2fde07e584c7825f351a579bca79d2af85ffbd4050b22e7a"),
         "version": String("1"),
-        "digest": String("HEW19U7yxSbxYqjS9ki1CwaEjE9YLKABTV7dUguZ4NBe"),
+        "digest": String("6VXiMgBEKCmFrtbjCXzBovJRx8SjRY2wNnfhCR3unLRo"),
         "modules": Array [
             String("usdc"),
             String("usdt"),
@@ -531,13 +520,11 @@ Array [
     Object {
         "type": String("created"),
         "sender": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
-        "owner": Object {
-            "AddressOwner": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
-        },
-        "objectType": String("0x2::coin::Coin<0x2a103227aa10cd45f3f7c8a2c03370ef9c7b6b707d30e1bfab8b9e1f4d655d1d::usdc::USDC>"),
-        "objectId": String("0x4cd18498983981544af5038e6fb6dccd1d5e77bf662a2f42b84811e70bcec30c"),
-        "version": String("71"),
-        "digest": String("3yaQp3qLo8UepUsJSfEe27wYvh5iBpZSN3PC3ZZoWAoL"),
+        "owner": String("Immutable"),
+        "objectType": String("0x2::coin::CoinMetadata<0x36c3caa66233e1aa2fde07e584c7825f351a579bca79d2af85ffbd4050b22e7a::usdc::USDC>"),
+        "objectId": String("0x3e0be82618bb2f82cf5e24a1988a7890e759b9ae8b1ff70a43475a34db45674c"),
+        "version": String("12"),
+        "digest": String("CN5XHX2RTsFydNV8BvweNijg3oYG1M1VG3D48WkuDp4S"),
     },
     Object {
         "type": String("created"),
@@ -545,32 +532,10 @@ Array [
         "owner": Object {
             "AddressOwner": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
         },
-        "objectType": String("0x2::coin::Coin<0x2a103227aa10cd45f3f7c8a2c03370ef9c7b6b707d30e1bfab8b9e1f4d655d1d::usdt::USDT>"),
-        "objectId": String("0x5a9a91f485f58d8187e6a35d71730be14723ea432535f16544a1ba63cb3cda39"),
-        "version": String("71"),
-        "digest": String("EpE21EK2gSPZ5xkC8AEULfaKvEcCtpnnmKvvthFvhtw7"),
-    },
-    Object {
-        "type": String("created"),
-        "sender": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
-        "owner": Object {
-            "AddressOwner": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
-        },
-        "objectType": String("0x2::coin::TreasuryCap<0x2a103227aa10cd45f3f7c8a2c03370ef9c7b6b707d30e1bfab8b9e1f4d655d1d::usdc::USDC>"),
-        "objectId": String("0x7098dd388a20e40ec7881653a96773382207db179dede7e1687feb1966da2af9"),
-        "version": String("71"),
-        "digest": String("AHjDmQ63RcqkxvXVnDsaR5j7vSV8GpMsBUVCUe5XPtKf"),
-    },
-    Object {
-        "type": String("created"),
-        "sender": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
-        "owner": Object {
-            "AddressOwner": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
-        },
-        "objectType": String("0x2::coin::TreasuryCap<0x2a103227aa10cd45f3f7c8a2c03370ef9c7b6b707d30e1bfab8b9e1f4d655d1d::usdt::USDT>"),
-        "objectId": String("0xa79e39b974cafef2c9c9796678a487a4df1c3851a8496f8e85acc143603b8bfc"),
-        "version": String("71"),
-        "digest": String("BXkoQ4uavoMXZhhoRqg6ZA9YzRXyJkoicvsw7N22rqcY"),
+        "objectType": String("0x2::coin::TreasuryCap<0x36c3caa66233e1aa2fde07e584c7825f351a579bca79d2af85ffbd4050b22e7a::usdt::USDT>"),
+        "objectId": String("0x9257d312994a4961b14c01d918b34eed97f7f9c5e637584ba77736696b0c7b8c"),
+        "version": String("12"),
+        "digest": String("4bgd698Dp4todT6KHqP7xPMP2Fn26c4VYsW92jeDigr6"),
     },
     Object {
         "type": String("created"),
@@ -579,9 +544,51 @@ Array [
             "AddressOwner": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
         },
         "objectType": String("0x2::package::UpgradeCap"),
-        "objectId": String("0xd794f8d2d3837cf8cdc8441d1de4f4366f31cdd16126584226deca362f9ac1b5"),
-        "version": String("71"),
-        "digest": String("8g78mEh9bekU6YZcNNzgQZwwt4o5T1v6JmV6CKuW3iS9"),
+        "objectId": String("0xa4442b9d6edf515fa112766a3240e54c94c5324f51905f08b9f01258c23a9001"),
+        "version": String("12"),
+        "digest": String("DkjFqw3D8vKBEC5hmPSnAmEMC1Dsu4P3CQ2ChfYmqEep"),
+    },
+    Object {
+        "type": String("created"),
+        "sender": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
+        "owner": String("Immutable"),
+        "objectType": String("0x2::coin::CoinMetadata<0x36c3caa66233e1aa2fde07e584c7825f351a579bca79d2af85ffbd4050b22e7a::usdt::USDT>"),
+        "objectId": String("0xb579ca008b337fe6035a8eaae02f57134cfd514b78b8bf20504d04d39a7b36b0"),
+        "version": String("12"),
+        "digest": String("4iEgiWXFW6KFPQiTx9mkjShD5VcaRCckoDJA5BFACdsF"),
+    },
+    Object {
+        "type": String("created"),
+        "sender": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
+        "owner": Object {
+            "AddressOwner": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
+        },
+        "objectType": String("0x2::coin::Coin<0x36c3caa66233e1aa2fde07e584c7825f351a579bca79d2af85ffbd4050b22e7a::usdt::USDT>"),
+        "objectId": String("0xc8df945bc7d96540dc3435198f89a067fe39d3fc6ca106e6d59f2c79b8a7f746"),
+        "version": String("12"),
+        "digest": String("8mQLPBXE2JG378Cmoa6FvqkDfv4JxnpzeJaRDLT4aHBe"),
+    },
+    Object {
+        "type": String("created"),
+        "sender": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
+        "owner": Object {
+            "AddressOwner": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
+        },
+        "objectType": String("0x2::coin::Coin<0x36c3caa66233e1aa2fde07e584c7825f351a579bca79d2af85ffbd4050b22e7a::usdc::USDC>"),
+        "objectId": String("0xe0b8fd30a9d5872c4164a4477723ca99dcf11415035756c12b27f8e0790c696f"),
+        "version": String("12"),
+        "digest": String("HaBeBywQuQ2tdpYeTY7MZCJTdf7UTmGmA7qKWk6wPHFj"),
+    },
+    Object {
+        "type": String("created"),
+        "sender": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
+        "owner": Object {
+            "AddressOwner": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
+        },
+        "objectType": String("0x2::coin::TreasuryCap<0x36c3caa66233e1aa2fde07e584c7825f351a579bca79d2af85ffbd4050b22e7a::usdc::USDC>"),
+        "objectId": String("0xe5506bb3a7ddaf13a7c5fdcc5b4e442cfcdd8d2dd474fa71d973504c42c88192"),
+        "version": String("12"),
+        "digest": String("5vw6jL4NExUvihe1RzXMKwWuRAEWmo3Hr5tWhuh3aGF5"),
     },
 ]
 ----- Balance changes ----
@@ -591,20 +598,192 @@ Array [
             "AddressOwner": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
         },
         "coinType": String("0x2::sui::SUI"),
-        "amount": String("-27906280"),
+        "amount": String("-27359080"),
     },
     Object {
         "owner": Object {
             "AddressOwner": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
         },
-        "coinType": String("0x2a103227aa10cd45f3f7c8a2c03370ef9c7b6b707d30e1bfab8b9e1f4d655d1d::usdc::USDC"),
+        "coinType": String("0x36c3caa66233e1aa2fde07e584c7825f351a579bca79d2af85ffbd4050b22e7a::usdc::USDC"),
         "amount": String("600000000000000000"),
     },
     Object {
         "owner": Object {
             "AddressOwner": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
         },
-        "coinType": String("0x2a103227aa10cd45f3f7c8a2c03370ef9c7b6b707d30e1bfab8b9e1f4d655d1d::usdt::USDT"),
+        "coinType": String("0x36c3caa66233e1aa2fde07e584c7825f351a579bca79d2af85ffbd4050b22e7a::usdt::USDT"),
         "amount": String("600000000000000000"),
+    },
+]
+
+
+
+####################### Launchpad Deploy ##################################
+----- Transaction Digest ----
+DB5WtDrr6ozPHpeg8B9uSA2hbbcCo5S8HwMrSU3b9Bgy
+----- Transaction Data ----
+Transaction Signature: [Signature(Ed25519SuiSignature(Ed25519SuiSignature([0, 66, 1, 69, 18, 195, 111, 39, 77, 42, 175, 235, 19, 95, 43, 111, 136, 197, 14, 83, 208, 37, 252, 126, 234, 152, 29, 191, 106, 128, 103, 147, 68, 114, 63, 219, 125, 188, 236, 242, 38, 13, 101, 43, 92, 193, 3, 27, 205, 88, 214, 46, 161, 37, 43, 33, 195, 213, 50, 247, 120, 148, 111, 137, 3, 146, 137, 240, 92, 95, 249, 184, 138, 8, 66, 223, 49, 207, 236, 37, 173, 122, 165, 82, 174, 158, 228, 180, 22, 84, 71, 108, 163, 206, 250, 162, 139])))]
+Transaction Kind : Programmable
+Inputs: [Pure(SuiPureValue { value_type: Some(Address), value: "0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd" })]
+Commands: [
+  Publish(<modules>,0x0000000000000000000000000000000000000000000000000000000000000001,0x0000000000000000000000000000000000000000000000000000000000000002),
+  TransferObjects([Result(0)],Input(0)),
+]
+
+Sender: 0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd
+Gas Payment: Object ID: 0x15fad573a93c57d2b99ee4e166863f768875365f2af48a1cd3f2b73bbeceaff6, version: 0x2534f, digest: 3Ngz4FppgAeNG1TEtox211FczWRshY7Mo9Jyo2doegUp 
+Gas Owner: 0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd
+Gas Price: 1000
+Gas Budget: 500000000
+
+----- Transaction Effects ----
+Status : Success
+Created Objects:
+  - ID: 0x0caaba5cacf506f51b65f5d121d1a1b7949b102507a7327a6e80995ae7db5842 , Owner: Shared
+  - ID: 0x19ee680c401a7d8cde558b51778a8e19624bb39a8e52c105aea6444fe39b15fe , Owner: Account Address ( 0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd )
+  - ID: 0x40d1f40fd5c0d528d8a4572f62c360387414564cf29aa1a44b41c87ae077ab3f , Owner: Shared
+  - ID: 0x54e40bfc0211247cf369d59b933dcb25c6564a64f9cae76bccf7e8db448cc0da , Owner: Shared
+  - ID: 0x67a8bffa2072248ee232bda89d35012685ea10c295e989987a19c3d859fab7d1 , Owner: Account Address ( 0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd )
+  - ID: 0x69f64657b426a4345e6454a4185a33deedfaac5b9c646b65e972010774e09988 , Owner: Account Address ( 0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd )
+  - ID: 0xb417a8fcbdb6b751f52a517ea47f69cd8efababb60283f5cf90faa0cdae8d9b2 , Owner: Account Address ( 0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd )
+  - ID: 0xe54af8a209e3e56c90d1470d4a404b01eb8dd23df603f7f77fa9bbff081e7b55 , Owner: Immutable
+  - ID: 0xf66cf51fc27981d7fcf780e75a1a3e5ff993e0a130d1f6266e31a22760908684 , Owner: Account Address ( 0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd )
+Mutated Objects:
+  - ID: 0x15fad573a93c57d2b99ee4e166863f768875365f2af48a1cd3f2b73bbeceaff6 , Owner: Account Address ( 0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd )
+
+----- Events ----
+Array []
+----- Object changes ----
+Array [
+    Object {
+        "type": String("mutated"),
+        "sender": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
+        "owner": Object {
+            "AddressOwner": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
+        },
+        "objectType": String("0x2::coin::Coin<0x2::sui::SUI>"),
+        "objectId": String("0x15fad573a93c57d2b99ee4e166863f768875365f2af48a1cd3f2b73bbeceaff6"),
+        "version": String("152400"),
+        "previousVersion": String("152399"),
+        "digest": String("AbzNBb1YBvKkT1LVpXEYfnxgFDgLok3DuMYsfAdoDXy3"),
+    },
+    Object {
+        "type": String("created"),
+        "sender": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
+        "owner": Object {
+            "Shared": Object {
+                "initial_shared_version": Number(152400),
+            },
+        },
+        "objectType": String("0xe54af8a209e3e56c90d1470d4a404b01eb8dd23df603f7f77fa9bbff081e7b55::project::ProjectBank"),
+        "objectId": String("0x0caaba5cacf506f51b65f5d121d1a1b7949b102507a7327a6e80995ae7db5842"),
+        "version": String("152400"),
+        "digest": String("J81gGUzNZNAT8ND4jqyp57oPWwz1vMGwJjSMEwPSbJNK"),
+    },
+    Object {
+        "type": String("created"),
+        "sender": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
+        "owner": Object {
+            "AddressOwner": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
+        },
+        "objectType": String("0xe54af8a209e3e56c90d1470d4a404b01eb8dd23df603f7f77fa9bbff081e7b55::tokenomic::TAdminCap"),
+        "objectId": String("0x19ee680c401a7d8cde558b51778a8e19624bb39a8e52c105aea6444fe39b15fe"),
+        "version": String("152400"),
+        "digest": String("5MmZQMffXDMpgwYSg116a5R3ajTkjfikdFRJkn8sRDqL"),
+    },
+    Object {
+        "type": String("created"),
+        "sender": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
+        "owner": Object {
+            "Shared": Object {
+                "initial_shared_version": Number(152400),
+            },
+        },
+        "objectType": String("0xe54af8a209e3e56c90d1470d4a404b01eb8dd23df603f7f77fa9bbff081e7b55::kyc::Kyc"),
+        "objectId": String("0x40d1f40fd5c0d528d8a4572f62c360387414564cf29aa1a44b41c87ae077ab3f"),
+        "version": String("152400"),
+        "digest": String("EEWffFdaYSUytKjQbsJ96TQVe5jQecVWbBFM3FHetR3p"),
+    },
+    Object {
+        "type": String("created"),
+        "sender": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
+        "owner": Object {
+            "Shared": Object {
+                "initial_shared_version": Number(152400),
+            },
+        },
+        "objectType": String("0xe54af8a209e3e56c90d1470d4a404b01eb8dd23df603f7f77fa9bbff081e7b55::version::Version"),
+        "objectId": String("0x54e40bfc0211247cf369d59b933dcb25c6564a64f9cae76bccf7e8db448cc0da"),
+        "version": String("152400"),
+        "digest": String("5qnRR9tjYY2U1jhG65tW1RfHeysNRMxzhxAdoreBphwT"),
+    },
+    Object {
+        "type": String("created"),
+        "sender": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
+        "owner": Object {
+            "AddressOwner": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
+        },
+        "objectType": String("0x2::package::UpgradeCap"),
+        "objectId": String("0x67a8bffa2072248ee232bda89d35012685ea10c295e989987a19c3d859fab7d1"),
+        "version": String("152400"),
+        "digest": String("AbCoCBway6KPConBjVftTuh4hzPzRuePEi3Jd1xyxsai"),
+    },
+    Object {
+        "type": String("created"),
+        "sender": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
+        "owner": Object {
+            "AddressOwner": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
+        },
+        "objectType": String("0xe54af8a209e3e56c90d1470d4a404b01eb8dd23df603f7f77fa9bbff081e7b55::kyc::AdminCap"),
+        "objectId": String("0x69f64657b426a4345e6454a4185a33deedfaac5b9c646b65e972010774e09988"),
+        "version": String("152400"),
+        "digest": String("CbdKBuXrfyBXZZLxB48TBo3woaV4NtFJjhWxw6vWcd5p"),
+    },
+    Object {
+        "type": String("created"),
+        "sender": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
+        "owner": Object {
+            "AddressOwner": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
+        },
+        "objectType": String("0xe54af8a209e3e56c90d1470d4a404b01eb8dd23df603f7f77fa9bbff081e7b55::version::VAdminCap"),
+        "objectId": String("0xb417a8fcbdb6b751f52a517ea47f69cd8efababb60283f5cf90faa0cdae8d9b2"),
+        "version": String("152400"),
+        "digest": String("Dh3T55edgc9hecMJrrCEXpNrW3e6rsY7kGDPtHWoRdA5"),
+    },
+    Object {
+        "type": String("published"),
+        "packageId": String("0xe54af8a209e3e56c90d1470d4a404b01eb8dd23df603f7f77fa9bbff081e7b55"),
+        "version": String("1"),
+        "digest": String("7pmCwv2kf9ppeS1d9NSuhDUkP3Ru1BAsHQpQgp2bxbsa"),
+        "modules": Array [
+            String("kyc"),
+            String("payment"),
+            String("project"),
+            String("project_entries"),
+            String("tokenomic"),
+            String("tokenomic_entries"),
+            String("version"),
+        ],
+    },
+    Object {
+        "type": String("created"),
+        "sender": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
+        "owner": Object {
+            "AddressOwner": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
+        },
+        "objectType": String("0xe54af8a209e3e56c90d1470d4a404b01eb8dd23df603f7f77fa9bbff081e7b55::project::AdminCap"),
+        "objectId": String("0xf66cf51fc27981d7fcf780e75a1a3e5ff993e0a130d1f6266e31a22760908684"),
+        "version": String("152400"),
+        "digest": String("3dgoADDCu4dpbZ8KfdNsYtpKKyZU7bPk9Rixfwh5hcT6"),
+    },
+]
+----- Balance changes ----
+Array [
+    Object {
+        "owner": Object {
+            "AddressOwner": String("0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"),
+        },
+        "coinType": String("0x2::sui::SUI"),
+        "amount": String("-179948680"),
     },
 ]

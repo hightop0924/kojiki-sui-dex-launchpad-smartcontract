@@ -1,7 +1,7 @@
 [package]
 name = "defi"
 version = "1.0.0"
-published-at= "0x794020a70b7b382727db100ee76c0cb864102ee2814eac16a1bea1203a9b3334"
+published-at= "0x4ff5d043a3589c268b88235bb6e46032e5eab89c8e0d5832f185da5cda7e721a"
 
 [dependencies]
 # Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "sui-v1.0.0" }
@@ -11,7 +11,5 @@ Library = { local = "../library"}
 [addresses]
 std = "0x1"
 sui = "0x2"
-defi = "0x0"
-# library =  "0x99e3106048e51dfc0b4be926eaa80642be2e24945e432429cc3a03296b77b4af"
-# sake = "0x6641e9e6458742cb26805e4f9b3ed0f462f57d31a43857d339e4ac3737f3a464"
+defi = "0x4ff5d043a3589c268b88235bb6e46032e5eab89c8e0d5832f185da5cda7e721a"
 admin = "0xd67b1e7e1d61f6de5b6828b952dd9bb4f28166401483a12e37a7a7018567ecbd"
