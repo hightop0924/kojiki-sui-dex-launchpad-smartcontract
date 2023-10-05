@@ -4,6 +4,15 @@
 version = 0
 
 dependencies = [
+  { name = "Library" },
+  { name = "Sui" },
+]
+
+[[move.package]]
+name = "Library"
+source = { local = "../library" }
+
+dependencies = [
   { name = "Sui" },
 ]
 
